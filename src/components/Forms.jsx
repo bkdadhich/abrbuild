@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 // Import other components and dependencies
+import { useNavigate } from "react-router-dom";
 import Details from './inputFields/details';
 import Experience from './inputFields/Experince';
 import Education from './inputFields/Education';
@@ -18,6 +19,8 @@ import Experiencescreen from './loadingscreens/experiencescreen';
 import Educationscreen from './loadingscreens/educationscreen';
 import SkillScreen from './loadingscreens/skillScreen';
 import Summaryscreen from './loadingscreens/summaryscreen';
+import Tooltip from './Tooltip';
+
 
 function Form() {
   // State variables
@@ -403,7 +406,8 @@ return (
                 }
               })()}
             </div>
-            <div className="w-3/5 overflow-y-auto overflow-x-auto h-full justify-center p-10">
+            <div className="w-3/5 overflow-y-auto overflow-x-auto h-full justify-end  p-10 ">
+              <div className='ms-80 mb-10'><Tooltip/></div>
               <SimpleCVGenerator
                 ref={cvRef}
                 data={formData}

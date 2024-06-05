@@ -19,6 +19,7 @@ function Details({ details = [], handleInputChange }) {
       <div className='px-10 mt-7'>
         <h1 className='text-3xl font-semibold mb-3 '>What’s the best way for employers to contact you?</h1>
         <h1 className='text-sm'>We suggest including an email and phone number.</h1>
+        <h6 className='font-bold text-xs'>* indicates a required field</h6>
       </div>
         {areAllDetailsFilled() && (
           <div className=" top-0 right-0 transform translate-x-1/2 -translate-y-1/2 w-52 h-52 bg-red-900 rounded-full"></div>
