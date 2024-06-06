@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from '../components/images/WhatsApp Image 2024-06-04 at 18.27.02_2464e7dc.jpg';
+import logo from '../components/images/logo3.png';
 import upload from '../components/images/upload.png';
 import UploadScreen from "../components/loadingscreens/uploadscreen";
+import Footer from "./Footer";
 
 function Uploadresume() {
   const navigate = useNavigate();
@@ -22,8 +23,9 @@ function Uploadresume() {
         <UploadScreen />
       ) : (
         <>
-          <div className="flex justify-between p-2 h-16" style={{ backgroundColor: '#022B5F' }}>
-            <img src={logo} alt="" />
+         <div className="h-screen">
+         <div className="flex justify-between p-2 " style={{ backgroundColor: '#333456', color: '#F2931C' }}>
+            <img src={logo} alt="" style={{width:'130px'}}  />
           </div>
           <div className="text-center my-10">
             <h1 className="font-bold text-3xl mb-3">How do you want to build your resume?</h1>
@@ -46,10 +48,13 @@ function Uploadresume() {
             <h3 className="text-xs"><strong>Files we can read:</strong> DOC, DOCX, PDF, HTML, RTF, TXT</h3>
           </div>
           <div className="ms-20 mt-10">
-            <button className="px-10 rounded-full py-2 text-lg text-blue-800 font-bold border border-blue-700" onClick={handleClick2}>Back</button>
+            <button className="px-10 rounded-full py-2 text-lg text-violet-950 font-bold border border-violet-950" onClick={handleClick2}>Back</button>
           </div>
+         </div>
+         <Footer/>
         </>
       )}
+      
     </>
   );
 }

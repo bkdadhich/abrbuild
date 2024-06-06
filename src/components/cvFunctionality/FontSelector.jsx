@@ -1,7 +1,7 @@
 import React from 'react';
 
 const FontSelector = ({ selectedFont, setSelectedFont }) => (
-  <div className="text-black border-blue-950 border-2 rounded">
+  <div className="text-black">
   
     <select id="font" className='p-2 rounded-lg font-bold w-full text-center' value={selectedFont} onChange={(e) => setSelectedFont(e.target.value)}>
       <option value="Arial">Arial</option>

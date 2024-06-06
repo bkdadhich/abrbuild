@@ -2,10 +2,61 @@ import React, { useState } from 'react';
 import Formheader from '../forms/Formheader';
 
 function Details({ details = [], handleInputChange }) {
-  const [showSearch, setShowSearch] = useState(false);
+  const [showGithub, setShowGithub] = useState(false);
+  const [showProjects, setShowProjects] = useState(false);
+  const [showLanguage, setShowLanguage] = useState(false);
+  const [showAchievement, setShowAchievement] = useState(false);
 
-  const toggleSearch = () => {
-    setShowSearch(!showSearch);
+  const toggleGithub = (index) => {
+    setShowGithub(!showGithub);
+    if (!showGithub) {
+      const updatedDetails = [...details];
+      updatedDetails[index] = { ...updatedDetails[index], github: '' };
+      handleInputChange({ target: { name: 'github', value: '' } }, index, 'details');
+    }
+  };
+  
+  const toggleProjects = (index) => {
+    setShowProjects(!showProjects);
+    if (!showProjects) {
+      const updatedDetails = [...details];
+      updatedDetails[index] = { ...updatedDetails[index], projects: '' };
+      handleInputChange({ target: { name: 'projects', value: '' } }, index, 'details');
+    }
+  };
+  const toggleLanguage = (index) => {
+    setShowLanguage(!showLanguage);
+    if (!showLanguage) {
+      const updatedDetails = [...details];
+      updatedDetails[index] = { ...updatedDetails[index], github: '' };
+      handleInputChange({ target: { name: 'Language', value: '' } }, index, 'details');
+    }
+  };
+  const toggleAchievement = (index) => {
+    setShowAchievement(!showAchievement);
+    if (!showAchievement) {
+      const updatedDetails = [...details];
+      updatedDetails[index] = { ...updatedDetails[index], github: '' };
+      handleInputChange({ target: { name: 'Achievement', value: '' } }, index, 'details');
+    }
+  };
+
+  const deleteText = (field, index) => {
+    const updatedDetails = [...details];
+    updatedDetails[index] = { ...updatedDetails[index], [field]: '' };
+    handleInputChange({ target: { name: field, value: '' } }, index, 'details');
+    if (field === 'github') {
+      setShowGithub(false);
+    } else if (field === 'projects') {
+      setShowProjects(false);
+    }
+    else if (field === 'Language') {
+      setShowLanguage(false);
+    }
+    else if (field === 'Achievement') {
+      setShowAchievement(false);
+    }
+    
   };
 
   const areAllDetailsFilled = () => {
@@ -15,12 +66,11 @@ function Details({ details = [], handleInputChange }) {
   return (
     <>
       <div className="font-thin ">
-
-      <div className='px-10 mt-7'>
-        <h1 className='text-3xl font-semibold mb-3 '>What’s the best way for employers to contact you?</h1>
-        <h1 className='text-sm'>We suggest including an email and phone number.</h1>
-        <h6 className='font-bold text-xs my-4 '>* indicates a required field</h6>
-      </div>
+        <div className='px-10 mt-7'>
+          <h1 className='text-3xl font-semibold mb-3 '>What’s the best way for employers to contact you?</h1>
+          <h1 className='text-sm'>We suggest including an email and phone number.</h1>
+          <h6 className='font-bold text-xs my-4 '>* indicates a required field</h6>
+        </div>
         {areAllDetailsFilled() && (
           <div className=" top-0 right-0 transform translate-x-1/2 -translate-y-1/2 w-52 h-52 bg-red-900 rounded-full"></div>
         )}
@@ -30,7 +80,6 @@ function Details({ details = [], handleInputChange }) {
               <div className="">
                 <div className="flex gap-10 justify-around ">
                   <div className="w-3/5 justify-center px-14">
-                    {/* Display dummy profile picture */}
                     <img style={{height:'150px'}}
                       src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
                       alt="Dummy Profile"
@@ -41,11 +90,10 @@ function Details({ details = [], handleInputChange }) {
                     />
                     <label
                       htmlFor="profilePicture"
-                      className="block text-sm font-medium border-black  mb-4 text-center  py-2 rounded-full border-blue-950 border-2"
+                      className="block text-sm font-medium   mb-4 text-center  py-2 rounded-full border-blue-950 border-2"
                     >
                       Profile Picture
                     </label>
-                    {/* Hidden file input */}
                     <input
                       type="file"
                       accept="image/*"
@@ -58,14 +106,14 @@ function Details({ details = [], handleInputChange }) {
                   <div className="w-3/4">
                     <div className="">
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                        First Name
+                        First/Last Name
                       </label>
                       <input
                         type="text"
                         name="name"
                         value={del.name}
                         onChange={(e) => handleInputChange(e, index, 'details')}
-                        placeholder="Enter your First Name"
+                        placeholder="e.g. Ben, e.g. Dexter"
                         className="w-full p-2 mb-4 border border-black rounded-lg "
                       />
                     </div>
@@ -78,7 +126,7 @@ function Details({ details = [], handleInputChange }) {
                         name="Profession"
                         value={del.Profession}
                         onChange={(e) => handleInputChange(e, index, 'details')}
-                        placeholder="Enter your Profession"
+                        placeholder="e.g. Software Enginner"
                         className="w-full p-2 mb-4 border border-black rounded-lg "
                       />
                     </div>
@@ -94,11 +142,10 @@ function Details({ details = [], handleInputChange }) {
                       name="address"
                       value={del.address}
                       onChange={(e) => handleInputChange(e, index, 'details')}
-                      placeholder="Enter your address"
+                      placeholder="e.g. City, e.g. Country"
                       className="w-full p-2 mb-4 border border-black rounded-lg"
                     />
                   </div>
-
                   <div className="w-3/4">
                     <label htmlFor="phoneNumber" className="block text-sm font-medium text-black mb-2">
                       Phone
@@ -108,12 +155,11 @@ function Details({ details = [], handleInputChange }) {
                       name="phoneNumber"
                       value={del.phoneNumber}
                       onChange={(e) => handleInputChange(e, index, 'details')}
-                      placeholder="Enter your phone number"
+                      placeholder="e.g. +91 22 1234 5677"
                       className="w-full p-2 mb-4 border border-black rounded-lg"
                     />
                   </div>
                 </div>
-
                 <div className="flex gap-6">
                   <div className="w-3/4">
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -124,12 +170,11 @@ function Details({ details = [], handleInputChange }) {
                       name="email"
                       value={del.email}
                       onChange={(e) => handleInputChange(e, index, 'details')}
-                      placeholder="Enter your email"
+                      placeholder="e.g. dexter.ben"
                       className="w-full p-2 mb-4 border border-black rounded-lg"
                       required
                     />
                   </div>
-
                   <div className="w-3/4">
                     <label htmlFor="link" className="block text-sm font-medium text-gray-700 mb-2">
                       link:
@@ -144,7 +189,131 @@ function Details({ details = [], handleInputChange }) {
                     />
                   </div>
                 </div>
-               
+              </div>
+              <h3 className='my-4 font-bold'>Add additional information to your resume <span className='font-normal'>(optional)</span></h3>
+              <div cl>
+              
+              <div className='flex gap-7'>
+              <div>
+              <button className="font- text-lg flex items-center border-2 border-black rounded-full py-1 px-5 my-3" onClick={toggleGithub}>
+                  
+                  <h3>GitHub +</h3>
+                </button>
+                {showGithub && (
+                  <>
+                    <div className="">
+                      
+                      <input
+                        type="text"
+                        name="github"
+                        value={del.github}
+                        onChange={(e) => handleInputChange(e, index, 'details')}
+                        placeholder=" add github"
+                        className="w-full p-2 mb-4 border border-black rounded-lg"
+                      />
+                    </div>
+                    
+                    <button
+                      className="font-bold text-lg flex items-center"
+                      onClick={() => deleteText('github', index)}
+                    >
+                      
+                      Delete
+                    </button>
+                  </>
+                )}
+              </div>
+              <div>
+              <button className=" text-lg flex items-center border-2 border-black rounded-full py-1 px-5 my-3" onClick={toggleLanguage}>
+                  
+                  <h3>Language - Expertise +</h3>
+                </button>
+                {showLanguage && (
+                  <>
+                    <div className="w-">
+                      
+                      <input
+                        type="text"
+                        name="Language"
+                        value={del.Language}
+                        onChange={(e) => handleInputChange(e, index, 'details')}
+                        placeholder=" add github"
+                        className="w-full p-2 mb-4 border border-black rounded-lg"
+                      />
+                    </div>
+                    
+                    <button
+                      className="font-bold text-lg flex items-center"
+                      onClick={() => deleteText('Language', index)}
+                    >
+                      
+                      Delete
+                    </button>
+                  </>
+                )}
+              </div>
+              </div>
+              <div className='flex gap-9'>
+              <div>
+<button className=" text-lg flex items-center border-2 border-black rounded-full py-1 px-5 my-3" onClick={toggleProjects}>
+                  
+                  <h3>Projects +</h3>
+                </button>
+                {showProjects && (
+                  <>
+                    <div className="w-">
+                      
+                      <input
+                        type="text"
+                        name="projects"
+                        value={del.projects}
+                        onChange={(e) => handleInputChange(e, index, 'details')}
+                        placeholder=" add github"
+                        className="w- p-2 mb-4 border border-black rounded-lg"
+                      />
+                    </div>
+                    
+                    <button
+                      className="font-bold text-lg flex items-center"
+                      onClick={() => deleteText('projects', index)}
+                    >
+                      
+                      Delete
+                    </button>
+                  </>
+                )}
+</div>
+
+<div>
+<button className=" text-lg flex items-center border-2 border-black rounded-full py-1 px-5 my-3" onClick={toggleAchievement}>
+                  
+                  <h3>Awards & Achievement +</h3>
+                </button>
+                {showAchievement && (
+                  <>
+                    <div className="w-">
+                      
+                      <input
+                        type="text"
+                        name="Achievement"
+                        value={del.Achievement}
+                        onChange={(e) => handleInputChange(e, index, 'details')}
+                        placeholder=" add github"
+                        className="w- p-2 mb-4 border border-black rounded-lg"
+                      />
+                    </div>
+                    
+                    <button
+                      className="font-bold text-lg flex items-center"
+                      onClick={() => deleteText('Achievement', index)}
+                    >
+                      
+                      Delete
+                    </button>
+                  </>
+                )}
+</div>
+              </div>
               </div>
             </div>
           </div>

@@ -21,18 +21,31 @@ import SkillScreen from './loadingscreens/skillScreen';
 import Summaryscreen from './loadingscreens/summaryscreen';
 import Tooltip from './Tooltip';
 import TemplateSelector from './cvFunctionality/TemplateSelector';
+import Footer from './Footer';
+import FontSelector from './cvFunctionality/FontSelector';
+import ColorButtons from './cvFunctionality/ColorButtons';
 
-
+const predefinedColors = {
+  Template1: '#F5F5F5',
+  Template2: 'lightgray',
+  Template3: '#F0FFF0',
+  Template4: '#FFDAB9',
+  Template5: 'lightgray',
+  Template6: '#FFEBEF',
+  Template7: '#FFEDCC',
+};
 function Form() {
   // State variables
   const [showComponent, setShowComponent] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState('Template1');
+  const [selectedFont, setSelectedFont] = useState('Arial');
+  const [boxBgColor, setBoxBgColor] = useState(predefinedColors[selectedTemplate]);
   const [formData, setFormData] = useState(() => {
     const savedData = localStorage.getItem('formData');
     return savedData
       ? JSON.parse(savedData)
       : {
-          details: [{ name: '', profession: '', address: '', phoneNumber: '', email: '', link: '' }],
+          details: [{ name: '', profession: '', address: '', phoneNumber: '', email: '', link: '', github:'', projects:'', Achievement:'',language :'' }],
           language: [{ Languagename1: '', Languagename2: '' }],
           experiences: [{ company: '', role: '', companydescription: '', month1: '', month2: '', companyplace: '' }],
           educations: [{ coursename: '', schoolplace: '', schoolname: '', edmonth1: '', edmonth2: '' }],
@@ -94,7 +107,7 @@ const isDetailsComplete = () => {
     detailsFields.profession.trim() !== '' &&
     detailsFields.phoneNumber.trim() !== '' &&
     detailsFields.email.trim() !== '' &&
-    detailsFields.link.trim() !== '' &&
+    
     detailsFields.address.trim() !== '' &&
     detailsFields.description.trim() !== ''
   );
@@ -210,6 +223,9 @@ useEffect(() => {
   }
 }, [currentStep]);
 
+useEffect(() => {
+  setBoxBgColor(predefinedColors[selectedTemplate]);
+}, [selectedTemplate, setBoxBgColor]);
 
 const handleKeyPress = (e, index, section) => {
   console.log('Event target name:', e.target.name);
@@ -329,12 +345,17 @@ return (
           >
             Previous
           </button>
-          <button
+          <div className='flex gap-10'>
+         <div className='flex gap-3 items-center font-semibold'>Fonts: <FontSelector selectedFont={selectedFont} setSelectedFont={setSelectedFont} /></div>
+         <div className='flex gap-3 items-center font-semibold'>Color:  <ColorButtons setBoxBgColor={setBoxBgColor} /></div>
+          
+          <button 
            onClick={handleNext}
-          className={`${currentStepColor}  bg-yellow-500  px-10 py-2 rounded-full font-bold`}
+          className={`${currentStepColor}  bg-yellow-500  px-10 py-2 rounded-full font-bold float-end`}
             > {`    
             ${screenNames[sectionsList[currentStep + 1]] || 'Perview'}`}
           </button>
+          </div>
 
         </div>
         <div className="flex">
@@ -426,14 +447,17 @@ return (
                 }
               })()}
             </div>
-            <div className="w-3/5 overflow-y-auto overflow-x-auto h-full justify-end  p-10 ">
-              <div className='ms-80 mb-10'><Tooltip/></div>
+            <div className="w-3/5 overflow-y-auto overflow-x-auto h-full justify-center  p-10 ">
+              <div className='ms-40 mb-5'><Tooltip/></div>
               
               <SimpleCVGenerator
                 ref={cvRef}
                 data={formData}
                 selectedTemplate={selectedTemplate}
                 setSelectedTemplate={setSelectedTemplate}
+                selectedFont={selectedFont} 
+                setSelectedFont={setSelectedFont}
+                boxBgColor={boxBgColor}
               />
               <div className='my-2 px-10 '>
        <TemplateSelector selectedTemplate={selectedTemplate} setSelectedTemplate={setSelectedTemplate} />
@@ -460,6 +484,7 @@ return (
       />
       </>
     )}
+    <Footer/>
   </div>
 );
 }

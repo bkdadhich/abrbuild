@@ -56,22 +56,22 @@ const Template1 = ({
         {!isPreviewScreen && !isTemplate1Previewing &&(
         <div className="">
           {allDetailsFilled && (
-            <div className="w-7 h-7 ps-2.5  mt-2 bg-white rounded-2xl absolute top-40 left-10 font-bold">1</div>
+            <div className="w-7 h-7 ps-2.5  mt-5 bg-white rounded-2xl absolute top-48 left-10 font-bold">1</div>
           )}
           {allDetailsFilled2 && (
-            <div className="w-7 h-7 ps-2.5 mt-6 bg-white rounded-2xl absolute top-48 left-10 font-bold">2</div>
+            <div className="w-7 h-8 ps-2.5 pt-0.5 mt-4 bg-white rounded-2xl absolute top-60 left-10 font-bold">2</div>
           )}
           {allDetailsFilled3 && (
-            <div className="w-7 h-8 ps-2.5 pt-0.5 mt-9 bg-white rounded-2xl absolute top-56 left-10 font-bold">3</div>
+            <div className="w-7 h-8 ps-2.5 pt-0.5 mt-4 bg-white rounded-2xl absolute top-72 left-10 font-bold">3</div>
           )}
           {allDetailsFilled4 && (
-            <div className="w-7 h-8 ps-2.5  mt-5 bg-white rounded-2xl absolute top-72 left-10 font-bold">4</div>
+            <div className="w-7 h-8 ps-2.5  mt-8 bg-white rounded-2xl absolute top-80 left-10 font-bold">4</div>
           )}
           {allDetailsFilled5 && (
-            <div className="w-7 h-7 ps-2.5  mt-5 bg-white rounded-2xl absolute top-96 left-10 font-bold">6</div>
+            <div className="w-7 h-7 ps-2.5  mt-16 bg-white rounded-2xl absolute top-96 left-10 font-bold">6</div>
           )}
           {allDetailsFilled6 && (
-            <div className="w-7 h-7 ps-2.5  mt-9  bg-white rounded-2xl absolute top-80 left-10 font-bold">5</div>
+            <div className="w-7 h-7 ps-2.5  mt-4  bg-white rounded-2xl absolute top-96 left-10 font-bold">5</div>
           )}
         </div>
       )}
@@ -88,6 +88,12 @@ const Template1 = ({
       <li className={`${del.email ? 'before:content-["●"] before:m-2' : ''} w-2/2 break-all`}>{del.email}</li>
       <li className={`${del.link ? 'before:content-["●"] before:m-2' : ''} w-2/2 break-all`}>
         <a href={del.link}>{del.link}</a>
+      </li>
+      <li className={`${del.github ? 'before:content-["●"] before:m-2' : ''} w-2/2 break-all`}>
+        <a href={del.github}>{del.github}</a>
+      </li>
+      <li className={`${del.projects ? 'before:content-["●"] before:m-2' : ''} w-2/2 break-all`}>
+        <a href={del.projects}>{del.projects}</a>
       </li>
     </ul>
     {summary.map((sum, index) => (

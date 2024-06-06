@@ -3,6 +3,7 @@ import PdfDownloadButton from '../forms/PdfDownloadButton';
 import CVGenerator from '../forms/CVGenerator';
 import FunctionalityOfCV from './FunctionalityOfCV';
 import TemplateComponent from './templateComponent';
+import Footer from '../Footer';
 
 const predefinedColors = {
   Template1: '#F5F5F5',
@@ -14,7 +15,9 @@ const predefinedColors = {
   Template7: '#FFEDCC',
 };
 
-const PreviewSection = ({ cvRef, handlePrint, setIsPreviewing, formData, isSaving, selectedTemplate, handleSectionInputChange, addSectionAdd, deleteSectionAdd, setSelectedTemplate, addSection, showRedCircle, hideIsDetailsComplete }) => {
+const PreviewSection = ({ cvRef, handlePrint, setIsPreviewing, formData, isSaving,
+   selectedTemplate, handleSectionInputChange, addSectionAdd, deleteSectionAdd, setSelectedTemplate,
+    addSection, showRedCircle, hideIsDetailsComplete }) => {
   const [boxBgColor, setBoxBgColor] = useState(predefinedColors[selectedTemplate]);
   const [selectedFont, setSelectedFont] = useState('Arial');
   const [textSize, setTextSize] = useState(2);
@@ -28,13 +31,13 @@ const PreviewSection = ({ cvRef, handlePrint, setIsPreviewing, formData, isSavin
   }, [selectedTemplate]);
 
   return (
-    <div className='h-screen justify-center'>
+    <div className='h-full justify-center'>
       <div className='px-10 mt-7 ms-36'>
         <h1 className='text-3xl font-bold mb-3 '>Review your resume</h1>
         <h1 className='text-lg'>Review and make any final changes to your resume, then download or email yourself a copy and apply for jobs!</h1>
       </div>
       <div className='flex justify-center'>
-        <div className="w-3/6 pt-10 relative h-screen overflow-auto">
+        <div className="w-3/6 pt-10  h-screen overflow-auto">
           <TemplateComponent
             ref={cvRef}
             data={formData}
@@ -140,7 +143,7 @@ const PreviewSection = ({ cvRef, handlePrint, setIsPreviewing, formData, isSavin
           </div>
         </div>
       </div>
-      <div className='flex justify-end border-2 p-2 bg-slate-300 sticky bottom-0'>
+      <div className='flex justify-end border-2 p-2 bg-slate-300 '>
         <button
           onClick={() => setIsPreviewing(false)}
           className="flex bg-blue-950 text-white px-10 py-2 rounded gap-5 font-bold"
@@ -148,7 +151,9 @@ const PreviewSection = ({ cvRef, handlePrint, setIsPreviewing, formData, isSavin
           Back
         </button>
       </div>
+    
     </div>
+    
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../components/images/WhatsApp Image 2024-06-04 at 18.27.02_2464e7dc.jpg';
+import logo from '../components/images/logo3.png';
 
 const Slider = ({
   currentStep,
@@ -40,9 +40,9 @@ const Slider = ({
   };
 
   return (
-    <div className="h-full pb-80 justify-center" style={{backgroundColor:'#022B5F'}}>
-      <div className='pt-14 ps-10'>
-        <img src={logo}  className='w-24 ' alt="" />
+    <div className="h-full pb-80 justify-center" style={{ backgroundColor: '#333456', color: '#F2931C'}}>
+      <div className='pt-14 ps-16'>
+        <img src={logo}  className='w mb-10'style={{ width:'130px'}} alt="" />
       </div>
       <div className="px- py-3 flex ps-10">
         <ul className="space-y-4 ">
@@ -75,20 +75,13 @@ const Slider = ({
           ))}
         </ul>
       </div>
-      <div className="px-7 mt-5">
+      <div className="px-7 mt-10 mb-40">
         <p className="text-white mb-1 text-xs">RESUME PROGRESS {progress}%</p>
         <div className="bg-white h-2 w-full rounded-full">
-          <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${progress}%` }}></div>
+          <div className="bg-blue-500  h-2 rounded-full" style={{ width: `${progress}%` }}></div>
         </div>
       </div>
-      <div className='text-white ms-5 mt-28 text-xs sticky-bottom-0'>
-        <div className='py-2'>
-          <a href=" https://blog.abroadium.com/terms-conditions/">Terms & Conditions </a><br />
-          <a href=" https://blog.abroadium.com/privacy-policy-3/ " >Privacy Policy</a><br />
-          <a href=" https://blog.abroadium.com/category/ai-resume/ ">Resources  </a>
-        </div>
-        <p>© 2024, <a href="https://blog.abroadium.com/">Abroadium.com</a>, All rights reserved.</p>
-      </div>
+      
     </div>
   );
 };
