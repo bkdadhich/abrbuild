@@ -20,6 +20,7 @@ import Educationscreen from './loadingscreens/educationscreen';
 import SkillScreen from './loadingscreens/skillScreen';
 import Summaryscreen from './loadingscreens/summaryscreen';
 import Tooltip from './Tooltip';
+import TemplateSelector from './cvFunctionality/TemplateSelector';
 
 
 function Form() {
@@ -47,6 +48,17 @@ function Form() {
   const [currentStepColor, setCurrentStepColor] = useState('bg-blue-950');
   const cvRef = useRef(null);
   const [sections, setSections] = useState([]);
+  const [nextButtonText, setNextButtonText] = useState('Next');
+
+  const [screenNames, setScreenNames] = useState({
+    Details: 'Details',
+    Experience: 'Next: Work Experience',
+    Education: 'Next: Education',
+    Skills: 'Next: Skills',
+    summary: 'Next: Summary',
+    SectionAdd: 'Finalize',
+    
+  });
 
   // Define the screen components mapping
   const screenComponents = {
@@ -60,15 +72,15 @@ function Form() {
 
   // Handle the next button click
   const handleNext = () => {
+    const nextScreen = sectionsList[currentStep + 1]; // Get the name of the next screen
     if (currentStep < sectionsList.length - 1) {
-      // Show the screen component for the current section for 5 seconds
       setShowComponent(true);
       setTimeout(() => {
         setShowComponent(false);
         setCurrentStep(currentStep + 1);
-      }, 2000); // 5000 milliseconds = 5 seconds
+      }, 2000);
     } else {
-      setIsPreviewing(true); // Preview the form
+      setIsPreviewing(true);
     }
   };
   
@@ -190,6 +202,13 @@ const handleInputChange = (e, index, section) => {
   setIsSaving(true);
 };
 
+useEffect(() => {
+  if (currentStep < sectionsList.length - 1) {
+    setNextButtonText(`Next: ${sectionsList[currentStep + 1]}`);
+  } else {
+    setNextButtonText('Preview');
+  }
+}, [currentStep]);
 
 
 const handleKeyPress = (e, index, section) => {
@@ -305,20 +324,21 @@ return (
         <div className="flex justify-between border-2 p-2 bg-slate-300">
           <button
             onClick={handlePrevious}
-            className="bg-gray-500 text-white px-10 py-2 rounded font-bold"
+            className="bg-white text-blue-800 border-blue-800 border-2 px-10 py-2 rounded-full font-bold"
             disabled={currentStep === 0}
           >
             Previous
           </button>
           <button
-            onClick={handleNext}
-            className={`${currentStepColor} text-white px-10 py-2 rounded font-bold`}
-          >
-            Next
+           onClick={handleNext}
+          className={`${currentStepColor}  bg-yellow-500  px-10 py-2 rounded-full font-bold`}
+            > {`    
+            ${screenNames[sectionsList[currentStep + 1]] || 'Perview'}`}
           </button>
+
         </div>
         <div className="flex">
-          <div className="w-1/5 h-full bg-slate-300">
+          <div className="w-1/6 h-full bg-slate-300">
             <Slider
               sectionsList={sectionsList}
               currentStep={currentStep}
@@ -408,17 +428,23 @@ return (
             </div>
             <div className="w-3/5 overflow-y-auto overflow-x-auto h-full justify-end  p-10 ">
               <div className='ms-80 mb-10'><Tooltip/></div>
+              
               <SimpleCVGenerator
                 ref={cvRef}
                 data={formData}
                 selectedTemplate={selectedTemplate}
                 setSelectedTemplate={setSelectedTemplate}
               />
+              <div className='my-2 px-10 '>
+       <TemplateSelector selectedTemplate={selectedTemplate} setSelectedTemplate={setSelectedTemplate} />
+       </div>
             </div>
           </div>
         </div>
       </>
     ) : (
+      <>
+      
       <PreviewSection
         handlePrint={handlePrint}
         setIsPreviewing={setIsPreviewing}
@@ -432,6 +458,7 @@ return (
         setSelectedTemplate={setSelectedTemplate}
         hideIsDetailsComplete={true}
       />
+      </>
     )}
   </div>
 );

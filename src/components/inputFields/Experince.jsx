@@ -35,6 +35,7 @@ const Experience = ({ experiences = [], handleInputChange, addExperience, delete
         {experiences.map((exp, index) => (
           <div key={index} className="flex mt-4">
             <div className="w-full">
+            <h6 className='font-bold text-xs my-10 '>* indicates a required field</h6>
               <div className="flex gap-6">
                 <div className="w-3/4">
                   <label htmlFor="Company" className="block text-sm font-medium text-gray-700 mb-2">

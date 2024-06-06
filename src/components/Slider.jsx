@@ -25,7 +25,7 @@ const Slider = ({
 
   const getClassNameForStep = (index) => {
     let className =
-      'cursor-pointer text-lg rounded-full border-2 p-1 flex items-center justify-center ';
+      'cursor-pointer text-lg rounded-full -  flex items-center justify-center ';
     if (currentStep === index) {
       className += 'text-blue-900 bg-white font-bold ';
     } else {
@@ -40,9 +40,12 @@ const Slider = ({
   };
 
   return (
-    <div className="bg-blue-950 h-full pb-96">
-      <div className="p-9 flex">
-        <ul className="space-y-4 pt-8">
+    <div className="h-full pb-80 justify-center" style={{backgroundColor:'#022B5F'}}>
+      <div className='pt-14 ps-10'>
+        <img src={logo}  className='w-24 ' alt="" />
+      </div>
+      <div className="px- py-3 flex ps-10">
+        <ul className="space-y-4 ">
           {sections.map((section, index) => (
             <li
               key={index}
@@ -50,7 +53,7 @@ const Slider = ({
               onClick={() => setCurrentStep(index)}
             >
               <div className="relative">
-                <div className={`rounded-full px-2 ${currentStep === index ? 'text-black' : ''}`}>{index + 1}</div>
+                <div className={`rounded-full px-2 border-2 ${currentStep === index ? 'text-black' : ''}`}>{index + 1}</div>
                 {index !== sections.length - 1 && (
                   <div className="h-4 w-px bg-white absolute top-8 left-1/2 transform -translate-x-1/2"></div>
                 )}
@@ -58,12 +61,12 @@ const Slider = ({
             </li>
           ))}
         </ul>
-        <ul className="space-y-8 py-9">
+        <ul className="space-y-6  ">
           {sections.map((section, index) => (
             <li
               key={index}
-              className={`cursor-pointer align-middle px-2 ${
-                currentStep === index ? 'font-bold text-white' : 'hover:text-blue-800 text-white'
+              className={`cursor-pointer align-middle px-1 ${
+                currentStep === index ? 'font-semibold text-white' : 'hover:text-blue-800 text-white'
               }`}
               onClick={() => setCurrentStep(index)}
             >
@@ -72,16 +75,19 @@ const Slider = ({
           ))}
         </ul>
       </div>
-      <div className="px-9">
+      <div className="px-7 mt-5">
         <p className="text-white mb-1 text-xs">RESUME PROGRESS {progress}%</p>
-        <div className="bg-white h-3 w-full rounded-full">
-          <div className="bg-blue-500 h-3 rounded-full" style={{ width: `${progress}%` }}></div>
+        <div className="bg-white h-2 w-full rounded-full">
+          <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${progress}%` }}></div>
         </div>
       </div>
-      <div className='text-white m-10 mt-24 text-xs'>
-        <p>Powered By <a href="https://blog.abroadium.com/">Abroadium.com</a></p>
-        <img src={logo} className='w-24 my-2' alt="" />
-        <p>All Rights Reserved</p>
+      <div className='text-white ms-5 mt-28 text-xs sticky-bottom-0'>
+        <div className='py-2'>
+          <a href=" https://blog.abroadium.com/terms-conditions/">Terms & Conditions </a><br />
+          <a href=" https://blog.abroadium.com/privacy-policy-3/ " >Privacy Policy</a><br />
+          <a href=" https://blog.abroadium.com/category/ai-resume/ ">Resources  </a>
+        </div>
+        <p>© 2024, <a href="https://blog.abroadium.com/">Abroadium.com</a>, All rights reserved.</p>
       </div>
     </div>
   );

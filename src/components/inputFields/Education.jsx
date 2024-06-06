@@ -10,6 +10,7 @@ Include all Education and Training including trainings
 and Awards, Degrees, Certifications, Trainings, Recognitions, Awards and Accolades.
 
 </div>
+<h6 className='font-bold text-xs my-6 '>* indicates a required field</h6>
 
       {educations.map((edu, index) => (
         <div key={index} className="  mt-4 ">

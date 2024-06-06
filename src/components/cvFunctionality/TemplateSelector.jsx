@@ -24,7 +24,7 @@ const TemplateSelector = ({ selectedTemplate, setSelectedTemplate }) => {
         onClick={toggleDropdown}
         className="text-black border-blue-950 border-2 rounded font-bold p-2 w-full"
       >
-        Templates 
+       Select Templates 
       </button>
 
       {dropdownOpen && (
