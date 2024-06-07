@@ -101,30 +101,7 @@ const allDetailsFilled6 = summary.every(summar =>
           <div className="w-32 h-32 border-blue-950 bg-white rounded-full border-8 text-center break-all">
  
 </div>
-{details.map((del, index) => (
-  <React.Fragment key={index}>
-    {/* Display uploaded image */}
-    <img
-                style={{ height: '150px' }}
-                src={images[index] || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}
-                alt="Profile"
-                className="p-2 cursor-pointer"
-                
-              />
-               <input
-                type="file"
-                accept="image/*"
-                id={`fileInput-${index}`}
-                name="profilePicture"
-                onChange={(e) => handleFileChange(e, index)}
-                className="hidden"
-              />
 
-
-    {/* File input for image upload */}
-    
-  </React.Fragment>
-))}
 
 
             <h5 className=' text-sm pt-5'>CONTACT </h5>
