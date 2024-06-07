@@ -1,7 +1,23 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef,useState, useEffect } from 'react';
 import TemplateComponent from './templateComponent';
 
-const SimpleCVGenerator = forwardRef(({ data, selectedTemplate,showRedCircle,selectedFont ,setSelectedFont ,setBoxBgColor}, ref) => {
+
+
+const predefinedColors = {
+  Template1: '#F5F5F5',
+  Template2: 'lightgray',
+  Template3: '#F0FFF0',
+  Template4: '#FFDAB9',
+  Template5: 'lightgray',
+  Template6: '#FFEBEF',
+  Template7: '#FFEDCC',
+};
+
+const SimpleCVGenerator = forwardRef(({ data, selectedTemplate,showRedCircle,selectedFont ,setSelectedFont }, ref) => {
+  const [boxBgColor, setBoxBgColor] = useState(predefinedColors[selectedTemplate]);
+  useEffect(() => {
+    setBoxBgColor(predefinedColors[selectedTemplate]);
+  }, [selectedTemplate]);
   return (
     <div className="w-full lg:w-full p-1 " >
       <TemplateComponent
@@ -10,7 +26,7 @@ const SimpleCVGenerator = forwardRef(({ data, selectedTemplate,showRedCircle,sel
         selectedTemplate={selectedTemplate}
         showRedCircle={showRedCircle}
         selectedFont={selectedFont} setSelectedFont={setSelectedFont}
-        setBoxBgColor={setBoxBgColor}
+        boxBgColor={boxBgColor}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
-
-const Template2 = ({
+import { useState } from 'react';
+const Template10 = ({
   data,
   boxBgColor,
   font,
@@ -18,13 +18,26 @@ const Template2 = ({
   const lineHeightClass = lineSpacing === '1' ? 'leading-tight' : lineSpacing === '1.5' ? 'leading-snug' : 'leading-relaxed';
 
   // Provide default values for data properties
-  const { details = [], experiences = [], educations = [], skills = [], sectionadd = [] ,summary=[]} = data || {};
+  const { details = [{}], experiences = [], educations = [], skills = [], sectionadd = [] ,summary=[]} = data || {};
 
   // Generic function to check if all required fields are filled
   const areAllFieldsFilled = (item, fields) => {
     return fields.every(field => item[field] && item[field].trim() !== '');
   };
-
+  const handleFileChange = (e, index) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        console.log("Uploaded image data:", reader.result);
+        const updatedImages = [...images];
+        updatedImages[index] = reader.result;
+        setImages(updatedImages);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  
   // Check if all details are filled
   const allDetailsFilled = details.every(detail =>
     areAllFieldsFilled(detail, ['Profession', 'phoneNumber', 'email', 'link', 'address', 'name'])
@@ -48,8 +61,17 @@ const Template2 = ({
 const allDetailsFilled6 = summary.every(summar =>
     areAllFieldsFilled(summar, [ 'summarydescription'])
   );
+
+  const [images, setImages] = useState(() => {
+    if (details && details.length > 0) {
+      return details.map(() => null);
+    }
+    return [];
+
+    
+  });
   return (
-    <div className={`border px-5 ${textSizeClass} ${sectionSpacingClass} ${lineHeightClass}`} style={{ fontFamily: font }}>
+    <div className={`border break-all ${textSizeClass} ${sectionSpacingClass} ${lineHeightClass}`} style={{ fontFamily: font }}>
       {!isPreviewScreen && !isTemplate1Previewing &&(
         <div className="">
           {allDetailsFilled && (
@@ -72,42 +94,19 @@ const allDetailsFilled6 = summary.every(summar =>
           )}
         </div>
       )}
-      <div className='flex flex-col md:flex-row'>
-        <div className='md:w-2/3 md:px-10 pt-4'>
-          {details.map((del, index) => (
-            <div key={index}>
-              <h3 className="text-lg md:text-xl lg:text-3xl text-blue-800 font-bold ">{del.name}</h3>
-              <p className='text-lg md:text-xl lg:text-lg mt-2'> {del.Profession}</p>
-              {summary.map((sum, index) => (
-      <div key={index}>
-        <p className={`${paragraphSpacingClass} text-sm md:text-sm lg:text-sm  w-2/2 break-all`}>{sum.summarydescription}</p>
-        <br />
-      </div>
-    ))}
-              
-              <h5 className='text-blue-800 '>WORK EXPERIENCE </h5><br />
-              <div className="flex-grow border-t border-gray-300 align-super"></div>
-              {experiences.map((exp, index) => (
-                <div key={index}>
-                  <div className='flex justify-between mt-4'>
-                    <h6 className='font-bold'>{exp.Company} </h6>
-                    <p>{exp.month1}- {exp.month2}</p>
-                  </div>
-                  <h6>{exp.role}</h6>
-                  <ul className='m-2'>
-                    <li>{exp.companydescription}</li>
-                  </ul>
-                  <br />
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-        <div className="md:w-1/3 md:p-4 bg-slate-100" style={{ backgroundColor: boxBgColor }}>
-          <div>
-            <h5 className='text-blue-800  '>CONTACT </h5>
-            <div className="flex-grow border-t border-black align-super mt-5"></div>
-            <ul className=" text-xs md:text-xs lg:text-xs mt-2">
+      <div className='flex '>
+        
+        <div className="md:w-1/ md:ps-4 bg-slate-100 text-white overflow-auto justify-center " style={{ backgroundColor: boxBgColor }}>
+          <div className='pt-5'>
+          <div className='flex'>
+          <div className="w-32 h-40 b bg-white  border-8 text-center break-all"></div>
+          <div className='w-7 h-28 mt-7 bg-yellow-300'></div>
+          </div>
+
+
+            
+            
+            <ul className=" text-xs md:text-xs lg:text-xs mt-2 ">
               {details.map((del, index) => (
                 <React.Fragment key={index}>
                   <li><span className="m-2">&#8226;</span>{del.address}</li>
@@ -124,8 +123,8 @@ const allDetailsFilled6 = summary.every(summar =>
               ))}
             </ul>
           </div><br />
-          <h5 className='text-blue-800 '>EDUCATION </h5><br />
-          <div className="flex-grow border-t border-black align-super"></div>
+          <h5 className='text-sm'>EDUCATION </h5><br />
+          <div className="flex-grow border-t border-white align-super"></div>
           {educations.map((edu, index) => (
             <div key={index}>
               <ul className=" text-xs md:text-xs lg:text-xs mt-2">
@@ -135,8 +134,8 @@ const allDetailsFilled6 = summary.every(summar =>
               </ul>
             </div>
           ))} <br />
-          <h5 className='text-blue-800 '>SKILLS  </h5>
-          <div className="flex-grow border-t border-black align-super mt-2"></div>
+          <h5 className='text-sm '>SKILLS  </h5>
+          <div className="flex-grow border-t border-white align-super mt-2"></div>
           {skills.map((skill, index) => (
             <div key={index}>
               <ul className=" text-xs md:text-xs lg:text-xs mt-2">
@@ -147,22 +146,66 @@ const allDetailsFilled6 = summary.every(summar =>
                   <span className="m-2">&#8226;</span>{skill.skilldetails}
                 </li>
               </ul>
-            </div>
-          ))}
+            </div> 
+          ))} <br />
+          
+{details.map((del, index) => (
+  <div key={index} className='text-xs'>
+    <h5 className='text-sm '>Github  </h5>
+    <ul>
+      <li className={`${del.github ? 'before:content-["●"] before:m-2' : ''} w-2/2 break-all`}>
+        <a href={del.github}>{del.github}</a>
+      </li>
+    </ul>
+  </div>
+))}
           <div>
             {sectionadd.map((section, index) => (
               <div key={index} className="mt-5">
                 <h5 className="text-blue-800  break-all">{section.sectiontitle}</h5>
-                <div className="flex-grow border-t border-black align-super my-2 "></div>
+                <div className="flex-grow border-t border-white align-super my-2 "></div>
                 <span className="font-bold text-xs w-32">{section.sectionname}</span>
                 <h6 className={`${paragraphSpacingClass} text-xs  break-all`}>{section.sectiondescription}</h6>
               </div>
             ))}
           </div>
         </div>
+
+
+        <div className='md:w-2/3 md:p white'>
+        
+          {details.map((del, index) => (
+            <div key={index} className='bg-yellow-300  h-28 mt-12'><br />
+              <h3 className="text-lg md:text-xl lg:text-2xl text-gray-700 font-bold ms-10">{del.name}</h3>
+              <p className='text-sm md:text-sm lg:text-sm mt-2 ms-10'> {del.Profession}</p> <br /> <br />
+              
+              
+            </div>
+          ))} <br /><br />
+          <h5 className='font-bold mb-2 ms-7'>Experience </h5>
+              <div className="flex-grow border-t-2 border-yellow-300 align-super ms-7"></div>
+              {experiences.map((exp, index) => (
+                <div key={index} className='ms-10'>
+                <div> </div>
+                <div>
+                    <p className='text-xs mt-3'>{exp.month1}- {exp.month2}</p>
+             
+               <div className='flex'>
+               <h6 className='font-semibold text-sm'>{exp.Company} </h6>
+               <h6 className=' text-sm ps-1'>{exp.companyplace}</h6>
+               </div>
+             <h6 className='text-sm'>{exp.role}</h6>
+             <ul className='m-2'>
+               <li>{exp.companydescription}</li>
+             </ul>
+             
+                </div>
+           </div>
+              ))}
+        </div>
       </div>
     </div>
   );
 };
 
-export default Template2;
+export default Template10;

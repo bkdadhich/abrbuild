@@ -8,7 +8,10 @@ const templates = [
   { id: 'Template4', name: 'Template 4', image: require('../cvFunctionality/templateimages/template4.png') },
   { id: 'Template5', name: 'Template 5', image: require('../cvFunctionality/templateimages/template5.png') },
   { id: 'Template6', name: 'Template 6', image: require('../cvFunctionality/templateimages/template3.png') },
-  { id: 'Template7', name: 'Template 7', image: require('../cvFunctionality/templateimages/template7.png') }
+  { id: 'Template7', name: 'Template 7', image: require('../cvFunctionality/templateimages/template7.png') },
+  { id: 'Template8', name: 'Template 8', image: require('../cvFunctionality/templateimages/template8.png') },
+  { id: 'Template9', name: 'Template 9', image: require('../cvFunctionality/templateimages/template9.png') },
+  { id: 'Template10', name: 'Template 10', image: require('../cvFunctionality/templateimages/template10.png') }
 ];
 
 const TemplateSelector = ({ selectedTemplate, setSelectedTemplate }) => {

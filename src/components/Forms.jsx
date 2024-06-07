@@ -24,21 +24,25 @@ import TemplateSelector from './cvFunctionality/TemplateSelector';
 import Footer from './Footer';
 import FontSelector from './cvFunctionality/FontSelector';
 import ColorButtons from './cvFunctionality/ColorButtons';
+import TemplateComponent from './forms/templateComponent';
 
 const predefinedColors = {
   Template1: '#F5F5F5',
-  Template2: 'lightgray',
+  
   Template3: '#F0FFF0',
   Template4: '#FFDAB9',
   Template5: 'lightgray',
   Template6: '#FFEBEF',
   Template7: '#FFEDCC',
+  Template8: '#27384C',
+  Template9: '#27384C',
+  Template10: '#323B4C',
 };
 function Form() {
   // State variables
   const [showComponent, setShowComponent] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState('Template1');
-  const [selectedFont, setSelectedFont] = useState('Arial');
+   const [selectedFont, setSelectedFont] = useState('Arial');
   const [boxBgColor, setBoxBgColor] = useState(predefinedColors[selectedTemplate]);
   const [formData, setFormData] = useState(() => {
     const savedData = localStorage.getItem('formData');
@@ -337,7 +341,7 @@ return (
   <div className="h-screen">
     {!isPreviewing ? (
       <>
-        <div className="flex justify-between border-2 p-2 bg-slate-300">
+        <div className="flex justify-between border-2 p-1 bg-slate-300">
           <button
             onClick={handlePrevious}
             className="bg-white text-blue-800 border-blue-800 border-2 px-10 py-2 rounded-full font-bold"
@@ -347,7 +351,7 @@ return (
           </button>
           <div className='flex gap-10'>
          <div className='flex gap-3 items-center font-semibold'>Fonts: <FontSelector selectedFont={selectedFont} setSelectedFont={setSelectedFont} /></div>
-         <div className='flex gap-3 items-center font-semibold'>Color:  <ColorButtons setBoxBgColor={setBoxBgColor} /></div>
+         <div className='flex gap-3 items-center font-semibold'>Color:  <ColorButtons setBoxBgColor={setBoxBgColor}  /></div>
           
           <button 
            onClick={handleNext}
@@ -447,17 +451,17 @@ return (
                 }
               })()}
             </div>
-            <div className="w-3/5 overflow-y-auto overflow-x-auto h-full justify-center  p-10 ">
-              <div className='ms-40 mb-5'><Tooltip/></div>
+            <div className="w-3/5 overflow-y-auto overflow-x-auto h-full justify-center  py-10 ">
+              <div className=' mb-5 '><Tooltip/></div>
               
-              <SimpleCVGenerator
+              <TemplateComponent
                 ref={cvRef}
                 data={formData}
                 selectedTemplate={selectedTemplate}
                 setSelectedTemplate={setSelectedTemplate}
-                selectedFont={selectedFont} 
-                setSelectedFont={setSelectedFont}
+                selectedFont={selectedFont}
                 boxBgColor={boxBgColor}
+                setBoxBgColor={setBoxBgColor}
               />
               <div className='my-2 px-10 '>
        <TemplateSelector selectedTemplate={selectedTemplate} setSelectedTemplate={setSelectedTemplate} />
@@ -481,6 +485,10 @@ return (
         deleteSectionAdd={deleteSectionAdd}
         setSelectedTemplate={setSelectedTemplate}
         hideIsDetailsComplete={true}
+        selectedFont={selectedFont}
+         setSelectedFont={setSelectedFont}
+         setBoxBgColor={setBoxBgColor} boxBgColor={boxBgColor}
+        
       />
       </>
     )}

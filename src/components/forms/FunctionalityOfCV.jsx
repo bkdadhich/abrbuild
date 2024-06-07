@@ -4,15 +4,7 @@ import FontSelector from '../cvFunctionality/FontSelector';
 import Slider2 from '../cvFunctionality/Slider2';
 import ColorButtons from '../cvFunctionality/ColorButtons';
 
-const predefinedColors = {
-  Template1: '#F5F5F5',
-  Template2: 'lightgray',
-  Template3: '#F0FFF0',
-  Template4: '#FFDAB9',
-  Template5: 'lightgray',
-  Template6: '#FFEBEF',
-  Template7: '#FFEDCC',
-};
+
 
 const FunctionalityOfCV = ({
   selectedTemplate,
@@ -27,12 +19,10 @@ const FunctionalityOfCV = ({
   setParagraphSpacing,
   lineSpacing,
   setLineSpacing,
-  setBoxBgColor,
+  boxBgColor, setBoxBgColor
+  
 }) => {
-  useEffect(() => {
-    setBoxBgColor(predefinedColors[selectedTemplate]);
-  }, [selectedTemplate, setBoxBgColor]);
-
+  
   const [dropdownOpen, setDropdownOpen] = useState(false);
   
     const toggleDropdown = () => {
@@ -63,7 +53,7 @@ const FunctionalityOfCV = ({
          <Slider2 label="Paragraph Spacing" min={1} max={3} step={1} value={paragraphSpacing} setValue={setParagraphSpacing} />
          <Slider2 label="Line Spacing" min={1} max={2} step={0.5} value={lineSpacing} setValue={setLineSpacing} />
        </div>
-       <ColorButtons setBoxBgColor={setBoxBgColor} />
+       <ColorButtons setBoxBgColor={setBoxBgColor}  />
      </div>
       )}
     </div>

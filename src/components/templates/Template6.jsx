@@ -53,27 +53,27 @@ const Template6 = ({
       <div className={`p-8 text-violet-800 break-all bg-red-50 ${textSizeClass} ${sectionSpacingClass} ${lineHeightClass}`} style={{ fontFamily: font, }}>
         {/* Red circle indicating all fields are filled */}
         {!isPreviewScreen && (
-          <div className="">
+        <div className="">
           {allDetailsFilled && (
-            <div className="w-7 h-7 ps-2.5  mt-5 bg-white rounded-2xl absolute top-48 left-10 font-bold">1</div>
+            <div className="w-7 h-7 ps-2.5  mt-3 bg-white rounded-2xl absolute top-48 left-10 font-bold">1</div>
           )}
           {allDetailsFilled2 && (
-            <div className="w-7 h-8 ps-2.5 pt-0.5 mt-4 bg-white rounded-2xl absolute top-60 left-10 font-bold">2</div>
+            <div className="w-7 h-8 ps-2.5 pt-0.5 mt-2 bg-white rounded-2xl absolute top-60 left-10 font-bold">2</div>
           )}
           {allDetailsFilled3 && (
-            <div className="w-7 h-8 ps-2.5 pt-0.5 mt-4 bg-white rounded-2xl absolute top-72 left-10 font-bold">3</div>
+            <div className="w-7 h-8 ps-2.5 pt-0.5 mt-2 bg-white rounded-2xl absolute top-72 left-10 font-bold">3</div>
           )}
           {allDetailsFilled4 && (
-            <div className="w-7 h-8 ps-2.5  mt-8 bg-white rounded-2xl absolute top-80 left-10 font-bold">4</div>
+            <div className="w-7 h-8 ps-2.5  mt-6 bg-white rounded-2xl absolute top-80 left-10 font-bold">4</div>
           )}
           {allDetailsFilled5 && (
-            <div className="w-7 h-7 ps-2.5  mt-16 bg-white rounded-2xl absolute top-96 left-10 font-bold">6</div>
+            <div className="w-7 h-7 ps-2.5  mt-14 bg-white rounded-2xl absolute top-96 left-10 font-bold">6</div>
           )}
           {allDetailsFilled6 && (
-            <div className="w-7 h-7 ps-2.5  mt-4  bg-white rounded-2xl absolute top-96 left-10 font-bold">5</div>
+            <div className="w-7 h-7 ps-2.5  mt-2  bg-white rounded-2xl absolute top-96 left-10 font-bold">5</div>
           )}
         </div>
-        )}
+      )}
 
         <div className='text-center'>
           <h1 className='text-lg md:text-xl lg:text-3xl font-bold ms-2'>{details[0]?.name}</h1>
@@ -113,20 +113,20 @@ const Template6 = ({
               <div className='flex relative'>
                 <div className="flex border-r border-violet-300 h-full absolute"></div>
                 <div className='m-3'>
-                {skills.map((skill, index) => (
-                  <div key={index} className=' break-all '>
-                    <ol className="text-xs md:text-xs lg:text-xs m-2 font-bold">
-                      <li><span className="m-2">&#8226;</span>{skill.skillname}</li>
-                      <li className='text-xs md:text-xs lg:text-xs'><span className="m-2">&#8226;</span>{skill.skilldetails}</li>
-                    </ol>
-                    
-                  </div>
-                ))}
+                  {skills.map((skill, index) => (
+                    <div key={index} className=' break-all '>
+                      <ol className="text-xs md:text-xs lg:text-xs m-2 font-bold">
+                        <li><span className="m-2">&#8226;</span>{skill.skillname}</li>
+                        <li className='text-xs md:text-xs lg:text-xs'><span className="m-2">&#8226;</span>{skill.skilldetails}</li>
+                      </ol>
+                    </div>
+                  ))}
                 </div>
                 <div className="flex border-r border-violet-300 right-0 h-full absolute"></div>
               </div>
               <div className="flex-grow border-t border-violet-300 align-super">
-                <div className="flex border-r border-violet-300 h-full top-3 right-0 absolute"></div>
+                <div className="flex border-r border-violet-300 h">
+                </div>
               </div>
             </div>
 
@@ -142,21 +142,16 @@ const Template6 = ({
               <div className='flex relative'>
                 <div className="flex border-r border-violet-300 h-full absolute"></div>
                 <div className='m-3'>
-
-                {sectionadd.map((section2, index) => (
-          <div key={index} className="">
-            
-            <ol className="text-xs md:text-xs lg:text-xs  font-bold">
-                    <li><span className="m-2">&#8226;</span>{section2.addlanguage1}</li>
-                    <li className='text-xs md:text-xs lg:text-xs'><span className="m-2">&#8226;</span>{section2.addlanguage2}</li>
-                  </ol>
-            
-          </div>
-        ))}
-                  
-                  
+                  {sectionadd.map((section2, index) => (
+                    <div key={index} className="">
+                      <ol className="text-xs md:text-xs lg:text-xs  font-bold">
+                        <li><span className="m-2">&#8226;</span>{section2.addlanguage1}</li>
+                        <li className='text-xs md:text-xs lg:text-xs'><span className="m-2">&#8226;</span>{section2.addlanguage2}</li>
+                      </ol>
+                    </div>
+                  ))}
                 </div>
-                <div className="flex border-l border-violet-300 right-0 h-full absolute"></div>
+                <div className="flex border-r border-violet-300 right-0 h-full absolute"></div>
               </div>
               <div className="flex-grow border-t border-violet-300 align-super">
                 <div className="flex border-r border-violet-300 h-full top-3 right-0 absolute"></div>
@@ -175,18 +170,14 @@ const Template6 = ({
               <div className='flex relative'>
                 <div className="border-l border-violet-300 h-full absolute"></div>
                 <div className='m-4'>
-
-                {sectionadd.map((section3, index) => (
-          <div key={index} className="">
-            
-            <ol className="text-xs md:text-xs lg:text-xs mt-2 font-bold">
-                    <li><span className="m-2">&#8226;</span>{section3.addaward1}</li>
-                    <li className='text-xs md:text-xs lg:text-xs'><span className="m-2">&#8226;</span>{section3.addaward2}</li>
-                  </ol>
-            
-          </div>
-        ))}
-                  
+                  {sectionadd.map((section3, index) => (
+                    <div key={index} className="">
+                      <ol className="text-xs md:text-xs lg:text-xs mt-2 font-bold">
+                        <li><span className="m-2">&#8226;</span>{section3.addaward1}</li>
+                        <li className='text-xs md:text-xs lg:text-xs'><span className="m-2">&#8226;</span>{section3.addaward2}</li>
+                      </ol>
+                    </div>
+                  ))}
                 </div>
                 <div className="border-l border-violet-300 right-0 h-full absolute"></div>
               </div>
@@ -221,21 +212,20 @@ const Template6 = ({
               <div className="flex-grow border-t border-violet-300 align-super"></div>
             </div>
 
-           
-                <div className='flex items-center relative mt-5'>
-                  <div className="flex border-l border-violet-300 h-full top-3 absolute"></div>
-                  <div className="border-t border-violet-300 w-3"></div>
-                  <h5 className='text-white font-bold bg-violet-900 px-2 font-sans text-sm'>EXPERIENCE</h5>
-                  <div className="flex-grow border-t border-violet-300 align-super">
-                    <div className="flex border-r border-violet-300 h-full top-3 right-0 absolute"></div>
-                  </div>
-                </div>
-                <div className='flex relative'>
-                  <div className="border-l border-violet-300 h-full absolute"></div>
-                  <div className='m-2'>
-                  {experiences.map((exp, index) => (
-              <div key={index} className='mt-10 w'>
- <div className='m-2'>
+            <div className='flex items-center relative mt-5'>
+              <div className="flex border-l border-violet-300 h-full top-3 absolute"></div>
+              <div className="border-t border-violet-300 w-3"></div>
+              <h5 className='text-white font-bold bg-violet-900 px-2 font-sans text-sm'>EXPERIENCE</h5>
+              <div className="flex-grow border-t border-violet-300 align-super">
+                <div className="flex border-r border-violet-300 h-full top-3 right-0 absolute"></div>
+              </div>
+            </div>
+            <div className='flex relative'>
+              <div className="border-l border-violet-300 h-full absolute"></div>
+              <div className='m-2'>
+                {experiences.map((exp, index) => (
+                  <div key={index} className='mt-10 w'>
+                    <div className='m-2'>
                       <div className='flex justify-between'>
                         <h6 className='font-bold text-sm' style={{ fontSize: "10px" }}>{exp.Company}</h6>
                         <p style={{ fontSize: "8px" }}>{exp.month1} - {exp.month2}</p>
@@ -245,30 +235,25 @@ const Template6 = ({
                         <li className='text-xs md:text-xs lg:text-xs w-2/2 break-all' style={{ fontSize: "10px" }}>{exp.companydescription}</li>
                       </ul>
                     </div>
-</div>
-            ))}
                   </div>
-                  <div className="flex border-r border-violet-300 right-0 h-full absolute"></div>
-                </div>
-                <div className="flex-grow border-b border-violet-300 align-super"></div>
-            
-
-            <br />
-            <div>
-              <div className='flex items-center relative'>
-                <div className="flex border-l border-violet-300 h-full top-3 absolute"></div>
-                <div className="border-t border-violet-300 w-3"></div>
-                <h5 className='text-white font-bold bg-violet-900 px-2 font-sans text-sm'>REFERENCES</h5>
-                <div className="flex-grow border-t border-violet-300 align-super">
-                  <div className="flex border-r border-violet-300 h-full top-3 right-0 absolute"></div>
-                </div>
+                ))}
               </div>
-              <div className='flex relative'>
-                <div className="flex border-l border-violet-300 h-full absolute"></div>
+              <div className="flex border-r border-violet-300 right-0 h-full absolute"></div>
+            </div>
+            <div className="flex-grow border-b border-violet-300 align-super"></div>
 
-
-                
-                {sectionadd.map((section4, index) => (
+            
+            <div className='flex items-center relative mt-5'>
+              <div className="flex border-l border-violet-300 h-full top-3 absolute"></div>
+              <div className="border-t border-violet-300 w-3"></div>
+              <h5 className='text-white font-bold bg-violet-900 px-2 font-sans text-sm'>Reference</h5>
+              <div className="flex-grow border-t border-violet-300 align-super">
+                <div className="flex border-r border-violet-300 h-full top-3 right-0 absolute"></div>
+              </div>
+            </div>
+            <div className='flex items-center relative'>
+              <div className="flex border-l border-violet-300 h-full top- absolute"></div>
+                   {sectionadd.map((section4, index) => (
           <div key={index} className="m-4 break-all">
             
             <p className='font-bold text-xs'>{section4.addrefernces1}</p>
@@ -286,16 +271,18 @@ const Template6 = ({
                 <div className="flex border-r border-violet-300 right-0 h-full absolute"></div>
               </div>
               <div className="flex-grow border-t border-violet-300 align-super"></div>
-            </div>
+          </div>
+
+          <br />
+          <div>
+           
           </div>
         </div>
-        
-       
-        
       </div>
     </>
   );
 };
 
-
 export default Template6;
+
+

@@ -16,7 +16,9 @@ const SectionAdd = ({ sectionadd = [], handleInputChange, addSectionAdd, addSect
         <h1 className='text-4xl font-semibold mb-3'>Do you have anything else to add?</h1>
         
       </div>
-      {(selectedTemplate === "Template1" || selectedTemplate === "Template2" || selectedTemplate === "Template4" || selectedTemplate === "Template5" || selectedTemplate === "Template6" || selectedTemplate === "Template7" )&&(
+      {(selectedTemplate === "Template1" || selectedTemplate === "Template2" || selectedTemplate === "Template4" || 
+      selectedTemplate === "Template5" || selectedTemplate === "Template3" || selectedTemplate === "Template7" || selectedTemplate === "Template8"
+      || selectedTemplate === "Template9" )&&(
         <div><h1 className='text-lg'>These sections are optional.</h1>
           {sectionadd.map((section, index) => (
         <div key={index} className="relative mt-4 px-100">
@@ -80,7 +82,7 @@ const SectionAdd = ({ sectionadd = [], handleInputChange, addSectionAdd, addSect
       )}
 
 
-{selectedTemplate === "Template3" && (
+{selectedTemplate === "Template6" && (
         <div>
          {sectionadd.map((section2, index) => (
         <div key={index} className="relative mt-4 px-100">

@@ -4,40 +4,39 @@ import CVGenerator from '../forms/CVGenerator';
 import FunctionalityOfCV from './FunctionalityOfCV';
 import TemplateComponent from './templateComponent';
 import Footer from '../Footer';
+import FontSelector from '../cvFunctionality/FontSelector';
+import ColorButtons from '../cvFunctionality/ColorButtons';
 
-const predefinedColors = {
-  Template1: '#F5F5F5',
-  Template2: 'lightgray',
-  Template3: '#F0FFF0',
-  Template4: '#FFDAB9',
-  Template5: 'lightgray',
-  Template6: '#FFEBEF',
-  Template7: '#FFEDCC',
-};
+
 
 const PreviewSection = ({ cvRef, handlePrint, setIsPreviewing, formData, isSaving,
-   selectedTemplate, handleSectionInputChange, addSectionAdd, deleteSectionAdd, setSelectedTemplate,
-    addSection, showRedCircle, hideIsDetailsComplete }) => {
-  const [boxBgColor, setBoxBgColor] = useState(predefinedColors[selectedTemplate]);
-  const [selectedFont, setSelectedFont] = useState('Arial');
+   selectedTemplate, handleSectionInputChange, addSectionAdd, deleteSectionAdd, setSelectedTemplate,selectedFont, setSelectedFont,
+   boxBgColor,setBoxBgColor }) => {
+  
+
   const [textSize, setTextSize] = useState(2);
   const [sectionSpacing, setSectionSpacing] = useState(2);
   const [paragraphSpacing, setParagraphSpacing] = useState(2);
   const [lineSpacing, setLineSpacing] = useState(1.5);
   const [isPreviewScreen, setIsPreviewScreen] = useState(true);
 
-  useEffect(() => {
-    setBoxBgColor(predefinedColors[selectedTemplate]);
-  }, [selectedTemplate]);
 
   return (
     <div className='h-full justify-center'>
+      <div className='flex justify-end border-2 p-1 bg-slate-300 '>
+        <button
+          onClick={() => setIsPreviewing(false)}
+          className="bg-white text-blue-800 border-blue-800 border-2 px-8 py-1 m-1 me-5 rounded-full font-bold "
+        >
+          Back
+        </button>
+      </div>
       <div className='px-10 mt-7 ms-36'>
         <h1 className='text-3xl font-bold mb-3 '>Review your resume</h1>
         <h1 className='text-lg'>Review and make any final changes to your resume, then download or email yourself a copy and apply for jobs!</h1>
       </div>
-      <div className='flex justify-center'>
-        <div className="w-3/6 pt-10  h-screen overflow-auto">
+      <div className='flex justify-center mb-40'>
+        <div className="w-3/6 pt-10   overflow-auto">
           <TemplateComponent
             ref={cvRef}
             data={formData}
@@ -71,7 +70,7 @@ const PreviewSection = ({ cvRef, handlePrint, setIsPreviewing, formData, isSavin
           <button type="button" className="ms-5 mt-5 mb-10 text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-bold rounded-full px-28 py-3 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 me-2 ">
             Finish Resume
           </button>
-
+         
           <FunctionalityOfCV
             selectedTemplate={selectedTemplate}
             setSelectedTemplate={setSelectedTemplate}
@@ -85,8 +84,9 @@ const PreviewSection = ({ cvRef, handlePrint, setIsPreviewing, formData, isSavin
             setParagraphSpacing={setParagraphSpacing}
             lineSpacing={lineSpacing}
             setLineSpacing={setLineSpacing}
-            setBoxBgColor={setBoxBgColor}
+            setBoxBgColor={setBoxBgColor} 
           />
+         
 
           <div className="additional-sections ">
             {formData.sectionadd.map((section, index) => (
@@ -143,14 +143,7 @@ const PreviewSection = ({ cvRef, handlePrint, setIsPreviewing, formData, isSavin
           </div>
         </div>
       </div>
-      <div className='flex justify-end border-2 p-2 bg-slate-300 '>
-        <button
-          onClick={() => setIsPreviewing(false)}
-          className="flex bg-blue-950 text-white px-10 py-2 rounded gap-5 font-bold"
-        >
-          Back
-        </button>
-      </div>
+      
     
     </div>
     

@@ -6,18 +6,11 @@ import Template4 from '../templates/Template4';
 import Template5 from '../templates/Template5';
 import Template6 from '../templates/Template6';
 import Template7 from '../templates/Template7';
+import Template8 from '../templates/Template8';
+import Template9 from '../templates/Template9';
+import Template10 from '../templates/Template10';
 
-const predefinedColors = {
-  Template1: '#F5F5F5',
-  Template2: 'lightgray',
-  Template3: '#F0FFF0',
-  Template4: '#FFDAB9',
-  Template5: 'lightgray',
-  Template6: '#FFEBEF',
-  Template7: '#FFEDCC',
-};
-
-const TemplateComponent = forwardRef(({ data, selectedTemplate, selectedFont, textSize, sectionSpacing, paragraphSpacing, lineSpacing, boxBgColor, isPreviewScreen }, ref) => {
+const TemplateComponent = forwardRef(({ data, selectedTemplate, selectedFont, textSize, setBoxBgColor, sectionSpacing, paragraphSpacing, lineSpacing, boxBgColor, isPreviewScreen }, ref) => {
   const getSizeClass = (value) => {
     if (value <= 1) return 'small';
     if (value === 2) return 'medium';
@@ -47,23 +40,35 @@ const TemplateComponent = forwardRef(({ data, selectedTemplate, selectedFont, te
     case 'Template7':
       SelectedTemplateComponent = Template7;
       break;
+    case 'Template8':
+      SelectedTemplateComponent = Template8;
+      break;
+      case 'Template9':
+      SelectedTemplateComponent = Template9;
+      break;
+      case 'Template10':
+      SelectedTemplateComponent = Template10;
+      break;
     default:
       SelectedTemplateComponent = Template1;
   }
 
   return (
     <div ref={ref} className='bg-white'>
-      <SelectedTemplateComponent
-        data={data}
-        boxBgColor={boxBgColor}
-        font={selectedFont}
-        textSize={getSizeClass(textSize)}
-        sectionSpacing={getSizeClass(sectionSpacing)}
-        paragraphSpacing={getSizeClass(paragraphSpacing)}
-        lineSpacing={lineSpacing}
-        isPreviewScreen={isPreviewScreen}
-        isTemplate1Previewing={isPreviewScreen} // Mapping isPreviewScreen to isTemplate1Previewing
-      />
+      <div className=' '>
+        <SelectedTemplateComponent
+          data={data}
+          boxBgColor={boxBgColor}
+          setBoxBgColor={setBoxBgColor}
+          font={selectedFont}
+          textSize={getSizeClass(textSize)}
+          sectionSpacing={getSizeClass(sectionSpacing)}
+          paragraphSpacing={getSizeClass(paragraphSpacing)}
+          lineSpacing={lineSpacing}
+          isPreviewScreen={isPreviewScreen}
+          isTemplate1Previewing={isPreviewScreen} // Mapping isPreviewScreen to isTemplate1Previewing
+        />
+      </div>
     </div>
   );
 });
