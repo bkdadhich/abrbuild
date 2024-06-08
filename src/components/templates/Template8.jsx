@@ -1,15 +1,17 @@
 import React from 'react';
+import profilephoto from '../images/profilephoto.png';
 
 const Template8 = ({
-  data,
+  data = {},
   boxBgColor,
   font,
   textSize,
   sectionSpacing,
   paragraphSpacing,
   lineSpacing,
+  isPreviewScreen,
   isTemplate1Previewing,
-  isPreviewScreen 
+  predefinedText = {},
 }) => {
   // Define classes based on props
   const textSizeClass = textSize === 'small' ? 'text-sm' : textSize === 'medium' ? 'text-base' : 'text-lg';
@@ -75,21 +77,21 @@ const Template8 = ({
       )}
       <div className='bg-white  rounded-3xl'>
         <div className='bg-stone-300 flex justify-between px-10 rounded-3xl '>
-
-          <div>
+        
+          <div className='w-2/4'>
             <h5 className='font-extrabold  m-3'>ABOUT ME </h5>
             {summary.map((sum, index) => (
               <div key={index}>
-                <p className={`${paragraphSpacingClass} text-sm md:text-base lg:text-lg w-2/2 break-all`}>{sum.summarydescription}</p>
+                <p className={`${paragraphSpacingClass} text-sm md:text-base lg:text-lg w-2/2 break-all`}>{sum.summarydescription || "A brief summary"}</p>
                 <br />
               </div>
             ))}
           </div>
-          <div className='text-center pe-10 pt-4'>
+          <div className='text-center pe-10 pt-4 w-1/3'>
             {details.map((del, index) => (
               <div key={index}>
-                <h3 className="text-lg md:text-xl lg:text-2xl font-bold ">{del.name}</h3>
-                <p className='text-lg md:text-xl lg:text-lg mt-2'> {del.Profession}</p>
+                <h3 className="text-lg md:text-xl lg:text-1xl font-bold ">{del.name || "John Doe"}</h3>
+                <p className='text-lg md:text-xl lg:text-lg mt-2'> {del.Profession || "Software Engineer"}</p>
               </div>
             ))}
           </div>
@@ -104,11 +106,11 @@ const Template8 = ({
             {experiences.map((exp, index) => (
               <div key={index}>
                 <p>{exp.month1} - {exp.month2}</p>
-                <h6 className='font-bold'>{exp.Company} </h6>
+                <h6 className='font-bold'>{exp.Company || "ABC Inc."}</h6>
                 <ul className='m-1'>
-                  <li>{exp.companydescription}</li>
+                  <li>{exp.companydescription || "Description of job experience"}</li>
                 </ul>
-                <h6 className='font-semibold'>{exp.role}</h6>
+                <h6 className='font-semibold'>{exp.role || "Software Developer"}</h6>
                 <br />
               </div>
             ))}
@@ -118,10 +120,10 @@ const Template8 = ({
               <div key={index}>
                 <ul className="text-sm md:text-base lg:text-lg mt-2">
                   <li>
-                    <span className="m-2">&#8226;</span>{skill.skillname}
+                    <span className="m-2">&#8226;</span>{skill.skillname || "Skill Name"}
                   </li>
                   <li>
-                    <span className="m-2">&#8226;</span>{skill.skilldetails}
+                    <span className="m-2">&#8226;</span>{skill.skilldetails || "Skill Details"}
                   </li>
                 </ul>
               </div>
@@ -131,76 +133,74 @@ const Template8 = ({
               <div key={index}>
                 <ul>
                   <li className={`${del.Language ? 'before:content-["●"] before:m-2' : ''} w-2/2 break-all`}>
-                    <a href={del.Language}>{del.Language}</a>
+                  <a href={del.Language || "#"}>{del.Language || "English"}</a>
                   </li>
                 </ul>
               </div>
             ))}
 
             <h5 className='font-extrabold  m-3'>Github  </h5>
-{details.map((del, index) => (
-  <div key={index}>
-    <ul>
-      <li className={`${del.github ? 'before:content-["●"] before:m-2' : ''} w-2/2 break-all`}>
-        <a href={del.github}>{del.github}</a>
-      </li>
-    </ul>
-  </div>
-))}
+            {details.map((del, index) => (
+              <div key={index}>
+                <ul>
+                  <li className={`${del.github ? 'before:content-["●"] before:m-2' : ''} w-2/2 break-all`}>
+                    <a href={del.github || "#"}>{del.github || "https://github.com/example"}</a>
+                  </li>
+                </ul>
+              </div>
+            ))}
 
-</div>
-<div className="md:w-1/3 h-full bg-slate-100  border-white mx-10 "style={{ backgroundColor: boxBgColor }} >
+          </div>
+          <div className="md:w-1/3 h-full bg-slate-100  border-white mx-10 "style={{ backgroundColor: boxBgColor }} >
 
-<div className='w-11/12 h-full ms-2 bg-black border-white rounded-full border-8 text-center'>sdf <br /> fsd <br />sds <br /> s <br />sdf <br /> sdf <br />sdf f <br /></div>
+            <div className='w-11/12 h-full ms-2 bg-black border-white rounded-full border-8 text-center'>
+            <img src={profilephoto} alt=""  className='rounded-full'/></div>
 
 
-<div style={{ backgroundColor: boxBgColor }} className='px-5 h-max'>
-<div >
-<h5 className='font-extrabold text-white  pt-5 '>CONTACT ME</h5>
-<ul className="text-sm md:text-base lg:text-lg text-white">
-{details.map((del, index) => (
-  <React.Fragment key={index}>
-    <li><span className="m-2">&#8226;</span>{del.address}</li>
-    <li>
-      <span className="m-2">&#8226;</span>{del.phoneNumber}
-    </li>
-    <li className='break-all'>
-      <span className="m-2">&#8226;</span>{del.email}
-    </li>
-  </React.Fragment>
-))}
-</ul>
-</div><br />
-<h5 className='font-extrabold text-white'>EDUCATION </h5>
-{educations.map((edu, index) => (
-<div key={index}>
-<ul className="text-sm md:text-base lg:text-lg text-white mt-2">
-  <li className='font-bold'>{edu.coursename}</li>
-  <li>{edu.schoolname}</li>
-  <li>{edu.schoolplace}</li>
-  <p className='text-slate-400'>{edu.edmonth1} - {edu.edmonth2}</p>
-</ul>
-</div>
-))} <br />
+            <div style={{ backgroundColor: boxBgColor }} className='px-5 h-max'>
+              <div >
+                <h5 className='font-extrabold text-white  pt-5 '>CONTACT ME</h5>
+                <ul className="text-sm md:text-base lg:text-lg text-white">
+                  {details.map((del, index) => (
+                    <React.Fragment key={index}>
+                      <li><span className="m-2">&#8226;</span>{del.address || "123 Main St"}</li>
+                      <li>
+                        <span className="m-2">&#8226;</span>{del.phoneNumber || "123-456-7890"}
+                      </li>
+                      <li className='break-all'>
+                        <span className="m-2">&#8226;</span>{del.email || "example@example.com"}
+                      </li>
+                    </React.Fragment>
+                  ))}
+                </ul>
+              </div><br />
+              <h5 className='font-extrabold text-white'>EDUCATION </h5>
+              {educations.map((edu, index) => (
+                <div key={index}>
+                  <ul className="text-sm md:text-base lg:text-lg text-white mt-2">
+                    <li className='font-bold'>{edu.coursename || "Computer Science"}</li>
+                    <li>{edu.schoolname || "ABC University"}</li>
+                    <li>{edu.schoolplace || "City, Country"}</li>
+                    <p className='text-slate-400'>{edu.edmonth1} - {edu.edmonth2}</p>
+                  </ul>
+                </div>
+              ))} <br />
 
-<div>
-{sectionadd.map((section, index) => (
-<div key={index} className="mt-5">
-  <h5 className="font-extrabold text-white">{section.sectiontitle}</h5>
-  
-  <span className="text-white w-32">{section.sectionname}</span>
-  <h6 className={`${paragraphSpacingClass} text-white break-all`}>{section.sectiondescription}</h6>
-</div>
-))}
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-);
+              <div>
+                {sectionadd.map((section, index) => (
+                  <div key={index} className="mt-5">
+                    <h5 className="font-extrabold text-white">{section.sectiontitle || "Additional Section"}</h5>
+                    <span className="text-white w-32">{section.sectionname || "Section Name"}</span>
+                    <h6 className={`${paragraphSpacingClass} text-white break-all`}>{section.sectiondescription || "Section description"}</h6>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Template8;
-

@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React from "react";
 const Template7 = ({
   data,
   boxBgColor,
@@ -8,7 +7,8 @@ const Template7 = ({
   sectionSpacing,
   paragraphSpacing,
   lineSpacing,
-  isPreviewScreen 
+  isPreviewScreen,
+  predefinedText
 }) => {
   // Define classes based on props
   const textSizeClass = textSize === 'small' ? 'text-sm' : textSize === 'medium' ? 'text-base' : 'text-lg';
@@ -51,7 +51,7 @@ const Template7 = ({
 
   return (
     <div
-      className={`border-2 border-gray-300 px-5 ${textSizeClass} ${sectionSpacingClass} ${lineHeightClass}`}
+      className={`border-2 border-gray-300 px-5 break-all ${textSizeClass} ${sectionSpacingClass} ${lineHeightClass}`}
       style={{ fontFamily: font }}
     >
       {/* Red circle indicating all fields are filled */}
@@ -82,8 +82,8 @@ const Template7 = ({
         <div className='w-2/3 px-10 '>
           {details.map((del, index) => (
             <div key={index}>
-              <h3 className="text-lg md:text-xl lg:text-3xl text-orange-800 font-bold">{del.name}</h3>
-              <p className='font-medium'>{del.Profession}</p> <br />
+              <h3 className="text-lg md:text-xl lg:text-3xl text-orange-800 font-bold">{del.name || predefinedText.details.name}</h3>
+              <p className='font-medium'>{del.Profession || predefinedText.details.profession}</p> <br />
             </div>
           ))}
 
@@ -96,19 +96,20 @@ const Template7 = ({
               {experiences.map((exp, index) => (
                 <div key={index} className='mt-4'>
                   <div className='flex justify-between'>
-                    <h6 className='font-bold'>{exp.Company}</h6>
+                    <h6 className='font-bold'>{exp.Company || predefinedText.experiences.company}</h6>
                     <p>{exp.month1} - {exp.month2}</p>
                   </div>
                   <h6>{exp.role}</h6>
                   <ul className={`m-2 ${paragraphSpacingClass}`}>
-                    <li>{exp.companydescription}</li>
+                    <li>{exp.companydescription || predefinedText.experiences.companydescription}</li>
                   </ul>
                 </div>
               ))}
             </div>
           )}
 
-         
+          {/* Add other sections here */}
+
         </div>
 
         <div className="w-1/3 p-4 bg-orange-100" style={{ backgroundColor: boxBgColor }}>
@@ -120,19 +121,19 @@ const Template7 = ({
                 <React.Fragment key={index}>
                   <li className="flex items-center">
                     <span className="h-1 w-1 bg-red-600 rounded-full mr-2 inline-block"></span>
-                    {del.address}
+                    {del.address || predefinedText.details.address}
                   </li>
                   <li className='text-xs md:text-xs lg:text-xs flex items-center'>
                     <span className="h-1 w-1 bg-red-600 rounded-full mr-2 inline-block"></span>
-                    {del.phoneNumber}
+                    {del.phoneNumber || predefinedText.details.phoneNumber}
                   </li>
                   <li className='text-xs md:text-xs lg:text-xs break-all flex items-center'>
                     <span className="h-1 w-1 bg-red-600 rounded-full mr-2 inline-block"></span>
-                    {del.email}
+                    {del.email || predefinedText.details.email}
                   </li>
                   <li className='text-xs md:text-xs lg:text-xs flex items-center'>
                     <span className="h-1 w-1 bg-red-600 rounded-full mr-2 inline-block"></span>
-                    <a href={del.link}>{del.link}</a>
+                    <a href={del.link || '#'}>{del.link || predefinedText.details.link}</a>
                   </li>
                 </React.Fragment>
               ))}
@@ -145,9 +146,15 @@ const Template7 = ({
               <div className="flex-grow border-t border-gray-300 align-super"></div>
               <ul className="mt-2">
                 {skills.map((skill, index) => (
-                  <li key={index}>
-                    <span className="font-bold">{skill.skillname}</span>: {skill.skilldetails}
+                <div>
+                   <li key={index}>
+                    <span className="font-bold">{skill.skillname || predefinedText.skills.skillname}</span>
+                    
                   </li>
+                  <li>
+                    {skill.skilldetails || predefinedText.skills.skilldetails}
+                  </li>
+                </div>
                 ))}
               </ul>
             </div>
@@ -160,7 +167,9 @@ const Template7 = ({
               <ul className="mt-2">
                 {educations.map((edu, index) => (
                   <li key={index}>
-                    {edu.coursename} at {edu.schoolname}, {edu.schoolplace}
+                    {edu.coursename || predefinedText.educations.coursename} at
+                     {edu.schoolname || predefinedText.educations.schoolname}, 
+                     {edu.schoolplace || predefinedText.educations.schoolplace}
                   </li>
                 ))}
               </ul>

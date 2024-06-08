@@ -9,7 +9,7 @@ import ColorButtons from '../cvFunctionality/ColorButtons';
 
 
 
-const PreviewSection = ({ cvRef, handlePrint, setIsPreviewing, formData, isSaving,
+const PreviewSection = ({ cvRef, handlePrint, setIsPreviewing, formData, isSaving,predefinedText,
    selectedTemplate, handleSectionInputChange, addSectionAdd, deleteSectionAdd, setSelectedTemplate,selectedFont, setSelectedFont,
    boxBgColor,setBoxBgColor }) => {
   
@@ -22,7 +22,7 @@ const PreviewSection = ({ cvRef, handlePrint, setIsPreviewing, formData, isSavin
 
 
   return (
-    <div className='h-full justify-center'>
+    <div className='h- justify-center '>
       <div className='flex justify-end border-2 p-1 bg-slate-300 '>
         <button
           onClick={() => setIsPreviewing(false)}
@@ -36,7 +36,7 @@ const PreviewSection = ({ cvRef, handlePrint, setIsPreviewing, formData, isSavin
         <h1 className='text-lg'>Review and make any final changes to your resume, then download or email yourself a copy and apply for jobs!</h1>
       </div>
       <div className='flex justify-center mb-40'>
-        <div className="w-3/6 pt-10   overflow-auto">
+        <div className="w-3/6 pt-10   overflow-auto mb-10">
           <TemplateComponent
             ref={cvRef}
             data={formData}
@@ -48,6 +48,7 @@ const PreviewSection = ({ cvRef, handlePrint, setIsPreviewing, formData, isSavin
             lineSpacing={lineSpacing}
             boxBgColor={boxBgColor}
             isPreviewScreen={isPreviewScreen}
+            predefinedText={predefinedText} 
           />
           {/* Render Additional Sections Input Fields */}
         </div>

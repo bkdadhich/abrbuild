@@ -38,6 +38,40 @@ const predefinedColors = {
   Template9: '#27384C',
   Template10: '#323B4C',
 };
+
+const predefinedText = {
+  details: {
+    name: 'First Last (Name)',
+    profession: 'Health and Safety Officer',
+    address: 'Atlanta, Georgia',
+    phoneNumber: ' +1-234-456-789',
+    email: ' resumeworld@resume.com',
+    link: ' linkedin.com/in/username',
+   
+  },
+  summary:{
+    summarydescription:'Health and safety officer with 8 years of experience developing safety policies and procedures that protect employees and encourage compliance with government regulations. Key achievement: conducted 53+ inspections to ensure 100% compliance with OSHA regulations and developed corrective action plans for non-compliance. '
+  },
+  experiences: {
+    company: 'Resume Worded, New York, NY  ',
+     role: 'Health and Safety Officer', 
+     companydescription: 'Executed internal environmental health and safety (EHS) audits of several work locations to identify potential hazards; recommended corrective actions that increased compliance by 91%. ',
+     companyplace: 'Delhi, India'
+  },
+  educations: { 
+    coursename: 'Resume Worded University', 
+    schoolplace: 'New York, NY ', 
+    schoolname: 'Master of Science — Public Health ',
+    },
+
+  skills: { 
+    skillname: 'Technical Skills', 
+    skilldetails: 'Industry Knowledge'
+   },
+  
+};
+
+
 function Form() {
   // State variables
   const [showComponent, setShowComponent] = useState(false);
@@ -56,7 +90,8 @@ function Form() {
           skills: [{ skillname: '', skilldetails: '' }],
           summary: [{ summarydescription: '' }],
           sectionadd: [],
-          sectionadd2: []
+          sectionadd2: [],
+          image: null
         };
   });
   const [isSaving, setIsSaving] = useState(false);
@@ -66,6 +101,7 @@ function Form() {
   const cvRef = useRef(null);
   const [sections, setSections] = useState([]);
   const [nextButtonText, setNextButtonText] = useState('Next');
+  const [image, setImage] = useState(null);
 
   const [screenNames, setScreenNames] = useState({
     Details: 'Details',
@@ -337,6 +373,24 @@ const deleteSectionAdd = (index) => {
   setFormData({ ...formData, sectionadd: updatedSectionAdd });
 };
 
+const handleImageUpload = (file) => {
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    setImage(reader.result);
+  };
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+};
+
+useEffect(() => {
+  // Clear the input value after image upload
+  const imageInput = document.getElementById('profilePicture');
+  if (imageInput) {
+    imageInput.value = '';
+  }
+}, [image]);
+
 return (
   <div className="h-screen">
     {!isPreviewing ? (
@@ -388,7 +442,12 @@ return (
               {(() => {
                 switch (sectionsList[currentStep]) {
                   case 'Details':
-                    return <Details details={formData.details} handleInputChange={handleInputChange} />;
+                    return <Details
+                    details={formData.details}
+                    handleInputChange={handleInputChange}
+                    onImageUpload={handleImageUpload}
+                  />;
+                  
                   case 'Experience':
                     return (
                       <>
@@ -451,7 +510,7 @@ return (
                 }
               })()}
             </div>
-            <div className="w-3/5 overflow-y-auto overflow-x-auto h-full justify-center  py-10 ">
+            <div className="w-3/5 overflow-y-auto overflow-x-auto h-full justify-center  py-10 mb-10">
               <div className=' mb-5 '><Tooltip/></div>
               
               <TemplateComponent
@@ -462,6 +521,8 @@ return (
                 selectedFont={selectedFont}
                 boxBgColor={boxBgColor}
                 setBoxBgColor={setBoxBgColor}
+                predefinedText={predefinedText} 
+                handleImageUpload={handleImageUpload}
               />
               <div className='my-2 px-10 '>
        <TemplateSelector selectedTemplate={selectedTemplate} setSelectedTemplate={setSelectedTemplate} />
@@ -488,6 +549,7 @@ return (
         selectedFont={selectedFont}
          setSelectedFont={setSelectedFont}
          setBoxBgColor={setBoxBgColor} boxBgColor={boxBgColor}
+         predefinedText={predefinedText}
         
       />
       </>

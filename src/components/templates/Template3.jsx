@@ -8,6 +8,7 @@ const Template3 = ({
   sectionSpacing,
   paragraphSpacing,
   lineSpacing,
+  predefinedText = {}
 }) => {
   // Define classes based on props
   const textSizeClass = textSize === 'small' ? 'text-sm' : textSize === 'medium' ? 'text-base' : 'text-lg';
@@ -16,7 +17,7 @@ const Template3 = ({
   const lineHeightClass = lineSpacing === '1' ? 'leading-tight' : lineSpacing === '1.5' ? 'leading-snug' : 'leading-relaxed';
 
   // Provide default values for data properties
-  const { details = [], experiences = [], educations = [], skills = [], sectionadd = [] } = data || {};
+  const { details = [], experiences = [], educations = [], skills = [] } = data || {};
 
   // Generic function to check if all required fields are filled
   const areAllFieldsFilled = (item, fields) => {
@@ -40,102 +41,79 @@ const Template3 = ({
     areAllFieldsFilled(skill, ['skillname', 'skilldetails'])
   );
 
-  const allDetailsFilled5 = sectionadd.every(section =>
-    areAllFieldsFilled(section, ['sectiontitle', 'sectiondescription'])
-  );
-return (
+  return (
+    <div className={`p-10 font-serif border-2 ${textSizeClass} ${sectionSpacingClass} ${lineHeightClass}`}
+         style={{ fontFamily: font }}>
 
-  <div  className={` p-10 font-serif border-2 ${textSizeClass} ${sectionSpacingClass} ${lineHeightClass}`}
-  style={{ fontFamily: font, }}>
-
-   
-   {details.map((del, index) => (
-          <div key={index}>
-            
-   <h3 className="text-lg md:text-xl lg:text-1xl text-center font-serif font-bold ">{del.name}</h3>
-   <div>
-    <ul className="flex text-xs md:text-xs lg:text-xs  text-center justify-evenly ">
-         <li>{del.address}</li>
-              <li className={`${del.phoneNumber.trim() ? 'before:content-["•"] before:mr-1' : ''} w-2/2 break-all`}>{del.phoneNumber}</li>
-              <li className={`${del.email.trim() ? 'before:content-["•"] before:mr-1' : ''} w-2/2 break-all`}>{del.email}</li>
+      {/* Details */}
+      {details.map((del, index) => (
+        <div key={index}>
+          <h3 className="text-lg md:text-xl lg:text-1xl text-center font-serif font-bold">{del.name || predefinedText.details.name}</h3>
+          <div>
+            <ul className="flex text-xs md:text-xs lg:text-xs text-center justify-evenly">
+              <li>{del.address || predefinedText.details.address}</li>
+              <li className={`${del.phoneNumber.trim() ? 'before:content-["•"] before:mr-1' : ''} w-2/2 break-all`}>{del.phoneNumber || predefinedText.details.phoneNumber}</li>
+              <li className={`${del.email.trim() ? 'before:content-["•"] before:mr-1' : ''} w-2/2 break-all`}>{del.email || predefinedText.details.email}</li>
               <li className={`${del.link.trim() ? 'before:content-["•"] before:mr-1' : ''} w-2/2 break-all`}>
-                <a href={del.link}>{del.link}</a>
+                <a href={del.link || '#'}>{del.link || predefinedText.details.link}</a>
               </li>
-      </ul>
-   </div><br />
+            </ul>
+          </div>
+          <br />
+        </div>
+      ))}
 
+      {/* Experiences */}
+      <div>
+        {experiences.map((exp, index) => (
+          <div key={index}>
+            <h5 className=' font-bold'>PROFESSIONAL EXPERIENCE</h5>
+            <div className="flex-grow border-t border-black align-super my-2"></div>
+            <div className='flex justify-between mt-4'>
+              <h6 className='font-bold text-xs'>{exp.Company || predefinedText.experiences.company}</h6><br />
+              <p className='text-xs'>{exp.month1} - {exp.month2}</p>
+            </div>
+            <h6 className='text-xs'>{exp.role ||  predefinedText.experiences.role }</h6>
+            <ul className='my-2'>
+              <li className='text-xs md:text-xs lg:text-xs mx-2 w-2/2 break-all'>{exp.companydescription || predefinedText.experiences.companydescription}</li><br />
+            </ul>
           </div>
         ))}
-
-   <div>
-   
-   
-   {data.experiences.map((exp, index) => (
-        <div key={index}>
-          <h5 className=' font-bold'>PROFESSIONAL EXPERIENCE</h5>
-          <div className="flex-grow border-t border-black align-super my-2"></div>
-           <div className='flex justify-between mt-4'>
-        <h6 className='font-bold text-xs'>{exp.Company}</h6><br />
-        <p className='text-xs'>{exp.month1} - {exp.month2}</p>
       </div>
-      <h6 className='text-xs'>{exp.role}</h6>
-      <ul className='mx-2'>
-        <li className='text-xs md:text-xs lg:text-xs mx-2 w-2/2 break-all'>{exp.companydescription}</li><br />
-      </ul>
-        </div>
-      ))}
 
-     
-   </div>
-
-  
-
-   <div>
-   <h5 className=' font-bold mt-3'>EDUCATION </h5>
-   <div className="flex-grow border-t border-black align-super my-2"></div>
-
-   
-   </div>
-
-   {data.educations.map((edu, index) => (
-        <div key={index}>
-          
-          <div className='flex justify-between'>
-        <div className='flex'>
-          <h4 className='font-bold text-xs'>{edu.coursename},</h4>
-          <h6 className='text-xs'>{edu.schoolplace}</h6>
-        </div>
-        <p className='text-xs'>{edu.edmonth1} to {edu.edmonth2}</p>
+      {/* Education */}
+      <div>
+        <h5 className=' font-bold mt-'>EDUCATION </h5>
+        <div className="flex-grow border-t border-black align-super my-2"></div>
+        {educations.map((edu, index) => (
+          <div key={index}>
+            <div className='flex justify-between'>
+              <div className='flex'>
+                <h4 className='font-bold text-xs'>{edu.coursename || predefinedText.educations.coursename},</h4>
+                <h6 className='text-xs'>{edu.schoolplace || predefinedText.educations.schoolplace}</h6>
+              </div>
+              <p className='text-xs'>{edu.edmonth1} to {edu.edmonth2}</p>
+            </div>
+            <p className='text-xs'>{edu.schoolname || predefinedText.educations.schoolname}</p>
+          </div>
+        ))}
       </div>
-      <p className='text-xs'>{edu.schoolname}</p>
-        </div>
-      ))}
 
-   <div>
-   <h5 className=' font-bold mt-3'>Skills</h5>
-   <div className="flex-grow border-t border-black align-super my-2"></div>
-   {data.skills.map((skill, index) => (
-        <div key={index}>   
-
-<ol className=" text-xs md:text-xs lg:text-xs mt-2 font-bold">
-        <li ><span className="m-2">&#8226;</span>
-        {skill.skillname}
-        </li>
-        <li className='text-xs md:text-xs lg:text-xs'>
-          <span className="m-2">&#8226;</span> 
-          {skill.skilldetails}
-        </li>
-       
-       
-      </ol>
-        
-      
-        </div>
-      ))}
-   
-   </div>
-   
-  </div>
-)
+      {/* Skills */}
+      <div>
+        <h5 className=' font-bold mt-3'>Skills</h5>
+        <div className="flex-grow border-t border-black align-super my-2"></div>
+        {skills.map((skill, index) => (
+          <div key={index}>
+            <ol className="text-xs md:text-xs lg:text-xs mt-2 font-bold">
+              <li><span className="m-2">&#8226;</span>{skill.skillname || predefinedText.skills.skillname}</li>
+              <li className='text-xs md:text-xs lg:text-xs'><span className="m-2">&#8226;</span>{skill.skilldetails || predefinedText.skills.skilldetails}</li>
+            </ol>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
+
 export default Template3;

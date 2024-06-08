@@ -14,11 +14,17 @@ const templates = [
   { id: 'Template10', name: 'Template 10', image: require('../cvFunctionality/templateimages/template10.png') }
 ];
 
-const TemplateSelector = ({ selectedTemplate, setSelectedTemplate }) => {
+const TemplateSelector = ({ selectedTemplate, setSelectedTemplate,onImageUpload  }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [uploadedImage, setUploadedImage] = useState(null);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
+  };
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setUploadedImage(file);
+    onImageUpload(file); // Call the onImageUpload prop with the uploaded image
   };
 
   return (
