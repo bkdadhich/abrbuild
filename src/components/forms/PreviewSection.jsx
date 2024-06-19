@@ -3,13 +3,11 @@ import PdfDownloadButton from '../forms/PdfDownloadButton';
 import CVGenerator from '../forms/CVGenerator';
 import FunctionalityOfCV from './FunctionalityOfCV';
 import TemplateComponent from './templateComponent';
-import Footer from '../Footer';
-import FontSelector from '../cvFunctionality/FontSelector';
-import ColorButtons from '../cvFunctionality/ColorButtons';
 
 
 
-const PreviewSection = ({ cvRef, handlePrint, setIsPreviewing, formData, isSaving,predefinedText,
+
+const PreviewSection = ({ cvRef, handlePrint, setIsPreviewing, formData, isSaving,predefinedText, image,
    selectedTemplate, handleSectionInputChange, addSectionAdd, deleteSectionAdd, setSelectedTemplate,selectedFont, setSelectedFont,
    boxBgColor,setBoxBgColor }) => {
   
@@ -49,6 +47,7 @@ const PreviewSection = ({ cvRef, handlePrint, setIsPreviewing, formData, isSavin
             boxBgColor={boxBgColor}
             isPreviewScreen={isPreviewScreen}
             predefinedText={predefinedText} 
+            image={image}
           />
           {/* Render Additional Sections Input Fields */}
         </div>

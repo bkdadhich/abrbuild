@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import Formheader from '../forms/Formheader';
 
-function Details({ details = [], handleInputChange }) {
+function Details({ details = [], handleInputChange, image, setImage }) {
   const [showGithub, setShowGithub] = useState(false);
   const [showProjects, setShowProjects] = useState(false);
   const [showLanguage, setShowLanguage] = useState(false);
   const [showAchievement, setShowAchievement] = useState(false);
-  const [image, setImage] = useState(null);
+  //const [image, setImage] = useState(null);
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImage(reader.result);
-    };
+
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
     if (file) {
-      reader.readAsDataURL(file);
+      const url = URL.createObjectURL(file);
+      setImage(url);
     }
   };
+console.log(image);
+
 
   useEffect(() => {
     const imageInput = document.getElementById('profilePicture');

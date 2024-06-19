@@ -45,8 +45,8 @@ const predefinedText = {
     profession: 'Health and Safety Officer',
     address: 'Atlanta, Georgia',
     phoneNumber: ' +1-234-456-789',
-    email: ' resumeworld@resume.com',
-    link: ' linkedin.com/in/username',
+    email: ' resume@.com',
+    link: ' linkedin.com',
    
   },
   summary:{
@@ -59,9 +59,9 @@ const predefinedText = {
      companyplace: 'Delhi, India'
   },
   educations: { 
-    coursename: 'Resume Worded University', 
+    coursename: 'Word University', 
     schoolplace: 'New York, NY ', 
-    schoolname: 'Master of Science — Public Health ',
+    schoolname: 'Master of Science - Public Health ',
     },
 
   skills: { 
@@ -83,7 +83,7 @@ function Form() {
     return savedData
       ? JSON.parse(savedData)
       : {
-          details: [{ name: '', profession: '', address: '', phoneNumber: '', email: '', link: '', github:'', projects:'', Achievement:'',language :'' }],
+          details: [{ name: '', profession: '', address: '', phoneNumber: '', email: '', link: '', github:'', projects:'', Achievement:'',language :'', image: '' }],
           language: [{ Languagename1: '', Languagename2: '' }],
           experiences: [{ company: '', role: '', companydescription: '', month1: '', month2: '', companyplace: '' }],
           educations: [{ coursename: '', schoolplace: '', schoolname: '', edmonth1: '', edmonth2: '' }],
@@ -373,16 +373,9 @@ const deleteSectionAdd = (index) => {
   setFormData({ ...formData, sectionadd: updatedSectionAdd });
 };
 
-const handleImageUpload = (file) => {
-  const reader = new FileReader();
-  reader.onloadend = () => {
-    setImage(reader.result);
-  };
-  if (file) {
-    reader.readAsDataURL(file);
-  }
-};
 
+
+console.log(formData)
 useEffect(() => {
   // Clear the input value after image upload
   const imageInput = document.getElementById('profilePicture');
@@ -390,6 +383,10 @@ useEffect(() => {
     imageInput.value = '';
   }
 }, [image]);
+
+useEffect(() => {
+  localStorage.setItem('formData', JSON.stringify(formData));
+}, [formData]);
 
 return (
   <div className="h-screen">
@@ -417,7 +414,7 @@ return (
 
         </div>
         <div className="flex">
-          <div className="w-1/6 h-full bg-slate-300">
+          <div className="w-1/6  bg-[#333456]">
             <Slider
               sectionsList={sectionsList}
               currentStep={currentStep}
@@ -443,9 +440,11 @@ return (
                 switch (sectionsList[currentStep]) {
                   case 'Details':
                     return <Details
+                    image={image}
+                    setImage={setImage}
                     details={formData.details}
                     handleInputChange={handleInputChange}
-                    onImageUpload={handleImageUpload}
+                 
                   />;
                   
                   case 'Experience':
@@ -511,9 +510,10 @@ return (
               })()}
             </div>
             <div className="w-3/5 overflow-y-auto overflow-x-auto h-full justify-center  py-10 mb-10">
-              <div className=' mb-5 '><Tooltip/></div>
+              <div className=' mb-5 ms-60 '><Tooltip/></div>
               
               <TemplateComponent
+              image={image}
                 ref={cvRef}
                 data={formData}
                 selectedTemplate={selectedTemplate}
@@ -521,8 +521,9 @@ return (
                 selectedFont={selectedFont}
                 boxBgColor={boxBgColor}
                 setBoxBgColor={setBoxBgColor}
-                predefinedText={predefinedText} 
-                handleImageUpload={handleImageUpload}
+                predefinedText={predefinedText}
+              
+              
               />
               <div className='my-2 px-10 '>
        <TemplateSelector selectedTemplate={selectedTemplate} setSelectedTemplate={setSelectedTemplate} />
@@ -535,6 +536,7 @@ return (
       <>
       
       <PreviewSection
+      image={image}
         handlePrint={handlePrint}
         setIsPreviewing={setIsPreviewing}
         isSaving={isSaving}

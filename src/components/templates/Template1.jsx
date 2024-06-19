@@ -102,16 +102,16 @@ const Template1 = ({
         {/* User details */}
 {details.map((del, index) => (
   <div key={index}>
-    <h3 className="text-xs sm:text-sm md:text-2xl lg:text-3xl text-cyan-600 font-bold ms-2">
+    <h3 className="text-xs sm:text-sm md:text-2xl lg:text-3xl text-cyan-600 font-bold ms-2 ">
       {del.name || predefinedText.details.name}
     </h3>
     <p className="text-xs sm:text-sm md:text-xl lg:text-lg ms-2">
       {del.Profession || predefinedText.details.profession}
     </p>
-    {del.image}
+
     <ul className="flex text-xs sm:text-sm md:text-xs lg:text-xs m-2 gap-2">
       <li>{del.address || predefinedText.details.address}</li>
-      <li className={`${del.phoneNumber ? 'before:content-["●"] before:m-2 font' : ''} w-2/2 break-all`}>
+      <li className={`${del.phoneNumber ? 'before:content-["●"] before:m-2 font' : ''}  break-all`}>
         {del.phoneNumber || predefinedText.details.phoneNumber}
       </li>
       <li className={`${del.email ? 'before:content-["●"] before:m-2' : ''} w-2/2 break-all`}>

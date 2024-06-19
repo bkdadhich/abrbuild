@@ -13,28 +13,21 @@ function Selectionresume() {
     const [loading, setLoading] = useState(false);
   
     const handleClick2 = () => {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
+      
         navigate('/uploadresume');
-      }, 5000);
+      
     };
 
     const handleClick = () => {
-        setLoading(true);
-        setTimeout(() => {
-          setLoading(false);
+        
           navigate('/form');
-        }, 5000);
+        
       };
 
   return (
     <>
-    {loading ? (
-        <UploadScreen />
-      ) : (
-        <>
-         <div className="flex justify-between  p-2 h-14 " style={{backgroundColor: '#333456', color: '#F2931C'}}>
+    
+         <div className="flex justify-between  p-2 h-14 bg-blue-300" >
           
           <img src={logo} alt=""  style={{width:'130px'}} />
             </div>
@@ -64,9 +57,9 @@ function Selectionresume() {
           <Footer/>
         </>
         
-      )}
+    
      
-    </>
+   
   );
 }
 

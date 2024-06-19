@@ -10,18 +10,16 @@ function Uploadresume() {
   const [loading, setLoading] = useState(false);
 
   const handleClick2 = () => {
-    setLoading(true);
+   
     setTimeout(() => {
-      setLoading(false);
+     
       navigate('/');
-    }, 5000);
+    });
   };
 
   return (
     <>
-      {loading ? (
-        <UploadScreen />
-      ) : (
+      
         <>
          <div className="h-screen">
          <div className="flex justify-between p-2 " style={{ backgroundColor: '#333456', color: '#F2931C' }}>
@@ -53,7 +51,7 @@ function Uploadresume() {
          </div>
          <Footer/>
         </>
-      )}
+    
       
     </>
   );
