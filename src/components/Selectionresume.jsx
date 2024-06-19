@@ -54,7 +54,7 @@ function Selectionresume() {
     
           </div>
           </div>
-          <Footer/>
+         
         </>
         
     
