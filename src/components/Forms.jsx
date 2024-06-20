@@ -392,29 +392,37 @@ return (
   <div className="h-screen">
     {!isPreviewing ? (
       <>
-        <div className="flex justify-between border-2 p-1 bg-slate-300">
-          <button
-            onClick={handlePrevious}
-            className="bg-white text-blue-800 border-blue-800 border-2 px-10 py-2 rounded-full font-bold"
-            disabled={currentStep === 0}
-          >
-            Previous
-          </button>
-          <div className='flex gap-10'>
-         <div className='flex gap-3 items-center font-semibold'>Fonts: <FontSelector selectedFont={selectedFont} setSelectedFont={setSelectedFont} /></div>
-         <div className='flex gap-3 items-center font-semibold'>Color:  <ColorButtons setBoxBgColor={setBoxBgColor}  /></div>
-          
-          <button 
-           onClick={handleNext}
-          className={`${currentStepColor}  bg-yellow-500  px-10 py-2 rounded-full font-bold float-end`}
-            > {`    
-            ${screenNames[sectionsList[currentStep + 1]] || 'Perview'}`}
-          </button>
-          </div>
+      <div className="flex flex-col sm:flex-row justify-between border-2 p-1 bg-slate-300">
+  <button
+    onClick={handlePrevious}
+    className="bg-white text-blue-800 border-blue-800 border-2 px-6 sm:px-10 py-2 rounded-full font-bold mb-2 sm:mb-0 hidden sm:block"
+    disabled={currentStep === 0}
+  >
+    Previous
+  </button>
+  <div className="flex flex-wrap sm:flex-nowrap gap-3 items-center">
+    {/* Fonts selector (hidden on mobile) */}
+    <div className="font-semibold hidden sm:block">Fonts:</div>
+    <div className="flex gap-3 items-center hidden sm:flex">
+      <FontSelector selectedFont={selectedFont} setSelectedFont={setSelectedFont} />
+    </div>
+    
+    {/* Color selector (hidden on mobile) */}
+    <div className="font-semibold hidden sm:block">Color:</div>
+    <div className="flex gap-3 items-center hidden sm:flex">
+      <ColorButtons setBoxBgColor={setBoxBgColor} />
+    </div>
+  </div>
+  <button
+    onClick={handleNext}
+    className={`${currentStepColor} bg-yellow-500 px-6 sm:px-10 py-2 rounded-full font-bold`}
+  >
+    {screenNames[sectionsList[currentStep + 1]] || 'Preview'}
+  </button>
+</div>
 
-        </div>
         <div className="flex">
-          <div className="w-1/6  bg-[#333456]">
+        <div className="w-1/6 bg-[#333456] hidden md:block">
             <Slider
               sectionsList={sectionsList}
               currentStep={currentStep}
@@ -429,12 +437,12 @@ return (
               isDetailsComplete6={isDetailsComplete6}
             />
           </div>
-          <div className="flex w-4/5">
+          <div className="flex w-full sm:w-4/5  justify-center">
             <div className="absolute h-screen">
               {/* Conditionally render the screen component based on the current section */}
               {showComponent && screenComponents[sectionsList[currentStep]]}
             </div>
-            <div className="w-4/5 p-3 h-screen">
+            <div className="w-4/5 p-3 h-screen ">
               {/* Render Active Section */}
               {(() => {
                 switch (sectionsList[currentStep]) {
@@ -509,7 +517,7 @@ return (
                 }
               })()}
             </div>
-            <div className="w-3/5 overflow-y-auto overflow-x-auto h-full justify-center  py-10 mb-10">
+            <div className="w-3/5 overflow-y-auto overflow-x-auto h-full justify-center  py-10 mb-10 hidden md:block">
               <div className=' mb-5 ms-60 '><Tooltip/></div>
               
               <TemplateComponent
