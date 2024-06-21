@@ -5,20 +5,12 @@ function Details({ details = [], handleInputChange, image, setImage }) {
   const [showProjects, setShowProjects] = useState(false);
   const [showLanguage, setShowLanguage] = useState(false);
   const [showAchievement, setShowAchievement] = useState(false);
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 03c2a0d60fc975bdee85fafe41b295be96de458b
+
   //const [image, setImage] = useState(null);
 
 
 
-<<<<<<< HEAD
-=======
-=======
 
->>>>>>> 12b83145d12e6ed197a9c2b2eec8d95d824ea4d3
->>>>>>> 03c2a0d60fc975bdee85fafe41b295be96de458b
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
