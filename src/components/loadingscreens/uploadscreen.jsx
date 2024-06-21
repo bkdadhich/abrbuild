@@ -5,10 +5,11 @@ function UploadScreen() {
   const [progress, setProgress] = useState(0);
 
   const messages = [
-    "32+ Professional Resume Designs",
-    "100,000+ Pre-Written Phrases",
-    "15,000+ Job Titles",
-    "9 Template Color Options",
+    "25+ Resume Designs",
+    "Robust AI Suggestion",
+    "One Click Improvement Options",
+    "8+ Template Color Options",
+    "Free Resume Score"
   ];
 
   useEffect(() => {
@@ -42,12 +43,12 @@ function UploadScreen() {
           </div>
         </div>
       </div>
-      <h6 className="font-semibold">loading...</h6>
+      <h6 className="font-semibold">Abroadium's AI Loading...</h6>
       <div className="space-y-2 mt-4">
         {messages.map((message, idx) => (
           <div key={idx} className="relative flex items-center font-semibold text-lg p-2 rounded-full">
-            <div className="rounded-full h-5 w-5 border-2 border-black bg-green-300 flex items-center p-4 justify-center">
-              {checked[idx] && <span className="text-black text-5xl ps-3 pb-3">✓</span>}
+            <div className="rounded-full h-5 w-5 border-2 border-black bg-[#333456]  flex items-center p-4 justify-center" >
+              {checked[idx] && <span className="text-[#F2931C] text-5xl ps-3 pb-3">✓</span>}
             </div>
             <span className="ml-2 text-gray-700">{message}</span>
           </div>
