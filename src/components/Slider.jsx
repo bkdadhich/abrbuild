@@ -40,7 +40,7 @@ const Slider = ({
   };
 
   return (
-    <div className="h-full pb-80 justify-center" style={{ backgroundColor: '#333456', color: '#F2931C'}}>
+    <div className="h-max pb-80 justify-center bg-blue-300" >
       <div className='pt-14 ps-16'>
         <img src={logo}  className='w mb-10'style={{ width:'130px'}} alt="" />
       </div>

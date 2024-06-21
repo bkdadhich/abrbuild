@@ -10,21 +10,19 @@ function Uploadresume() {
   const [loading, setLoading] = useState(false);
 
   const handleClick2 = () => {
-    setLoading(true);
+   
     setTimeout(() => {
-      setLoading(false);
+     
       navigate('/');
-    }, 5000);
+    });
   };
 
   return (
     <>
-      {loading ? (
-        <UploadScreen />
-      ) : (
+      
         <>
          <div className="h-screen">
-         <div className="flex justify-between p-2 " style={{ backgroundColor: '#333456', color: '#F2931C' }}>
+         <div className="flex justify-between p-2 bg-blue-300" >
             <img src={logo} alt="" style={{width:'130px'}}  />
           </div>
           <div className="text-center my-10">
@@ -36,24 +34,24 @@ function Uploadresume() {
               <h1 className="font-bold text-xl mt-2 mb-3 text-slate-700">Drag, and drop a file here</h1>
               <button className="text-white px-4 rounded-full py-1 text-xs" style={{ backgroundColor: '#022B5F' }}>Browse</button>
             </div>
-            <div className="mt-36">
+            {/*<div className="mt-36">
               OR
             </div>
             <div className="my-10 py-20">
               <button className="px-14 mb-3 rounded-full py-2 text-xs font-bold border border-blue-700">Google Drive</button> <br />
               <button className="px-16 rounded-full py-2 text-xs font-bold border border-blue-700">Dropbox</button>
-            </div>
+            </div> */}
           </div>
           <div className="text-center">
-            <h3 className="text-xs"><strong>Files we can read:</strong> DOC, DOCX, PDF, HTML, RTF, TXT</h3>
+            <h3 className="text-xs"><strong>Files we can read:</strong> PDF</h3>
           </div>
           <div className="ms-20 mt-10">
             <button className="px-10 rounded-full py-2 text-lg text-violet-950 font-bold border border-violet-950" onClick={handleClick2}>Back</button>
           </div>
          </div>
-         <Footer/>
+      
         </>
-      )}
+    
       
     </>
   );

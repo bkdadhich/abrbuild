@@ -54,3 +54,11 @@ body, html {
   display: flex;
   flex-direction: column;
 }
+
+
+/* styles.css */
+@media (min-width: 768px) {
+  .hide-on-mobile {
+    display: none;
+  }
+}
