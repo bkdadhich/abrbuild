@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import profilephoto from '../images/profilephoto.png';
 const Template9 = ({
+  image,
   data = {},
   boxBgColor,
   font,
@@ -88,7 +89,7 @@ const Template9 = ({
         <div className="md:w-1/ md:p-4 bg-slate-100 text-white overflow-auto justify-center " style={{ backgroundColor: boxBgColor }}>
           <div>
             <div className="w-32 h-32 border-blue-950 bg-white rounded-full border-8 text-center break-all">
-            <img src={profilephoto} alt="" style={{height:'112px',width:'112px'}} className='rounded-full'/>
+            <img src={image || profilephoto} alt="" style={{height:'112px',width:'112px'}} className='rounded-full'/>
             </div>
             <h5 className=' text-sm pt-5'>CONTACT </h5>
             <div className="flex-grow  border-t border-white align-super mt-3"></div>

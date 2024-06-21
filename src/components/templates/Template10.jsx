@@ -15,6 +15,7 @@ const Template10 = ({
   isPreviewScreen,
   predefinedText = {},
 }) => {
+  console.log('imageee', image)
   // Define classes based on props
   const textSizeClass = textSize === 'small' ? 'text-sm' : textSize === 'medium' ? 'text-base' : 'text-lg';
   const sectionSpacingClass = sectionSpacing === 'small' ? 'space-y-2' : sectionSpacing === 'medium' ? 'space-y-4' : 'space-y-6';
@@ -107,9 +108,10 @@ const Template10 = ({
           
           <div className='flex'>
           <div className="w-32 h-40 b bg-white  border-8 text-center break-all">
-              <img src={profilephoto} alt="" style={{height:'143px'}}/>
+              <img src={image || profilephoto} alt="" style={{height:'143px'}}/>
               </div>
 
+              
           <div className='w-7  h-28 mt-7 bg-yellow-300'></div>
           </div>
             <h5 className=' text-sm pt-5'>CONTACT </h5>
@@ -127,17 +129,18 @@ const Template10 = ({
                   <li className='text-xs md:text-xs lg:text-xs break-all'>
                     <span className="m-2">&#8226;</span><a href={del.link || '#'}>{del.link || predefinedText.details.link}</a>
                   </li>
+                  <img src={del.image} alt="" />
                 </React.Fragment>
               ))}
             </ul>
           </div><br />
-          <h5 className='text-sm'>EDUCATION </h5><br />
-          <div className="flex-grow border-t border-white align-super break-all"></div>
+          <h5 className='text-sm'>EDUCATION </h5>
+          <div className="flex-grow border-t border-white align-super break-all mt-3"></div>
           {educations.map((edu, index) => (
-            <div key={index}>
+            <div key={index} className='ms-3'>
               <ul className=" text-xs md:text-xs lg:text-xs mt-2 break-all w-28">
                 <li className='font-bold break-all '>{edu.coursename || predefinedText.educations.coursename}</li>
-                <li className='text-xs md:text-xs lg:text-sm mt-2 break-all'>{edu.schoolname || predefinedText.educations.schoolname}</li>
+                <li className='text-xs md:text-xs lg:text-xs mt-2 break-all'>{edu.schoolname || predefinedText.educations.schoolname}</li>
                 <li className='text-xs md:text-xs lg:text-xs mt-2 break-all'>{edu.schoolplace || predefinedText.educations.schoolplace}</li>
               </ul>
               </div>
@@ -158,7 +161,7 @@ const Template10 = ({
           ))}
 
           {details.map((del, index) => (
-            <div key={index} className='text-xs'>
+            <div key={index} className='text-xs mt-4'>
               <h5 className='text-sm '>Github  </h5>
               <ul>
                 <li className={`${del.github ? 'before:content-["●"] before:m-2' : ''} w-2/2 break-all`}>
@@ -187,19 +190,19 @@ const Template10 = ({
               <p className='text-sm md:text-sm lg:text-sm mt-2 ms-10'> {del.Profession || predefinedText.details.profession}</p> <br /> <br />
             </div>
           ))} <br /><br />
-          <h5 className='font-bold mb-2 ms-7'>Experience </h5>
+          <h5 className='font-extrabold mb-2 ms-7'>Experience </h5>
           <div className="flex-grow border-t-2 border-yellow-300 align-super ms-7"></div>
           {experiences.map((exp, index) => (
             <div key={index} className='ms-10'>
               <div> </div>
               <div>
-                <p className='text-xs mt-3'>{exp.month1}- {exp.month2}</p>
+                <p className='text-xs mt-3 mb-2'>{exp.month1 || "2024/01"}- {exp.month2 || "2024/05"}</p>
                 <div className='flex'>
-                  <h6 className='font-semibold text-sm'>{exp.Company || "ABC Inc."} </h6>
+                  <h6 className='font-semibold text-sm'>{exp.Company || "Resume World company Inc."} </h6>
                   <h6 className=' text-sm ps-1'>{exp.companyplace}</h6>
                 </div>
                 <h6 className='text-sm'>{exp.role || "Software Developer"}</h6>
-                <ul className='m-2'>
+                <ul className='m-2 text-xs'>
                   <li>{exp.companydescription || predefinedText.experiences.companydescription}</li>
                 </ul>
               </div>

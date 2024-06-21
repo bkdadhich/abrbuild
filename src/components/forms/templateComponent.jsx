@@ -10,9 +10,8 @@ import Template8 from '../templates/Template8';
 import Template9 from '../templates/Template9';
 import Template10 from '../templates/Template10';
 
-const TemplateComponent = forwardRef(({ data, selectedTemplate, selectedFont, textSize, setBoxBgColor, sectionSpacing, paragraphSpacing, lineSpacing, boxBgColor, isPreviewScreen, predefinedText , handleImageUpload}, ref) => {
-  const [image, setImage] = useState(null); // State for image
-
+const TemplateComponent = forwardRef(({ image, data, selectedTemplate, selectedFont, textSize, setBoxBgColor, sectionSpacing, paragraphSpacing, lineSpacing, boxBgColor, isPreviewScreen, predefinedText , handleImageUpload}, ref) => {
+console.log(image, '=====')
   
   
   const getSizeClass = (value) => {
@@ -61,6 +60,7 @@ const TemplateComponent = forwardRef(({ data, selectedTemplate, selectedFont, te
     <div ref={ref} className='bg-white'>
       <div className=''>
       <SelectedTemplateComponent
+      
   data={data}
   predefinedText={predefinedText} // Pass predefinedText as a prop
   boxBgColor={boxBgColor}
