@@ -15,11 +15,17 @@ function Uploadresume() {
   };
 
   const handleClick2 = () => {
-    setLoading(true);
+   
     setTimeout(() => {
+<<<<<<< HEAD
       setLoading(false);
       navigate('/uploadresume');
     }, 5000);
+=======
+     
+      navigate('/');
+    });
+>>>>>>> 03c2a0d60fc975bdee85fafe41b295be96de458b
   };
 
   const handleUpload = async () => {
@@ -62,13 +68,16 @@ function Uploadresume() {
 
   return (
     <>
-      {loading ? (
-        <UploadScreen />
-      ) : (
+      
         <>
          <div className="h-screen">
+<<<<<<< HEAD
          <div className="flex justify-between p-2 " style={{ backgroundColor: '#333456', color: '#F2931C' }}>
             <img src={logo} alt="Logo" style={{width:'130px'}}  />
+=======
+         <div className="flex justify-between p-2 bg-blue-300" >
+            <img src={logo} alt="" style={{width:'130px'}}  />
+>>>>>>> 03c2a0d60fc975bdee85fafe41b295be96de458b
           </div>
           <div className="text-center my-10">
             <h1 className="font-bold text-3xl mb-3">How do you want to build your resume?</h1>
@@ -90,24 +99,29 @@ function Uploadresume() {
                 Upload
               </button>
             </div>
-            <div className="mt-36">
+            {/*<div className="mt-36">
               OR
             </div>
             <div className="my-10 py-20">
               <button className="px-14 mb-3 rounded-full py-2 text-xs font-bold border border-blue-700">Google Drive</button> <br />
               <button className="px-16 rounded-full py-2 text-xs font-bold border border-blue-700">Dropbox</button>
-            </div>
+            </div> */}
           </div>
           <div className="text-center">
-            <h3 className="text-xs"><strong>Files we can read:</strong> DOC, DOCX, PDF, HTML, RTF, TXT</h3>
+            <h3 className="text-xs"><strong>Files we can read:</strong> PDF</h3>
           </div>
           <div className="mt-10 text-center">
             <button className="px-10 py-2 text-lg font-bold text-violet-950 border border-violet-950 rounded-full" onClick={handleClick2}>Back</button>
           </div>
          </div>
-         <Footer/>
+      
         </>
+<<<<<<< HEAD
       )}
+=======
+    
+      
+>>>>>>> 03c2a0d60fc975bdee85fafe41b295be96de458b
     </>
   );
 }
